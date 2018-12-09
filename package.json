@@ -1,0 +1,35 @@
+{
+  "name": "hasanirogers",
+  "version": "1.0.0",
+  "description": "Bringing wordpress to the future.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "Hasani Rogers <hasani.rogers@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@polymer/lit-element": "0.6.3",
+    "@polymer/polymer": "^3.1.0",
+    "@webcomponents/webcomponentsjs": "^1.0.18",
+    "stylelint-config-sass-guidelines": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
+    "debug": "^2.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^9.8.0",
+    "stylelint-webpack-plugin": "^0.10.5",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-merge": "^4.1.4"
+  }
+}

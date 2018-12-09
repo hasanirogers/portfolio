@@ -1,0 +1,5 @@
+node_modules/
+bundles/
+vendor/
+wp-config.php
+package-lock.json
