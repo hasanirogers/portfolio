@@ -16,6 +16,16 @@
  */
 
 wp_head(); ?>
-    <h1>Go Spinner!</h1>
-	<me-loading></me-loading>
+    <!--<me-loading></me-loading>-->
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/education">Education</a></li>
+        <li><a href="/history">History</a></li>
+        <li><a href="/skills">Skills</a></li>
+        <li><a href="/websites">Websites</a></li>
+        <li><a href="/accomplishments">Accomplishments</a></li>
+    </ul>
+    <main>
+        <view-all appTitle="Hasani Rogers"></view-all>
+    </main>
 <?php wp_footer();

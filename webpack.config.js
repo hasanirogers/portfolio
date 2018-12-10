@@ -2,6 +2,7 @@
 'use strict';
 
 const { resolve, join } = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
@@ -52,8 +53,8 @@ const commonConfig = merge([
             {
               loader: 'babel-loader',
               options: {
-                babelrc: false,
-                //extends: join(__dirname + '/.babelrc'),
+                babelrc: true,
+                extends: join(__dirname + '/.babelrc'),
                 cacheDirectory: true,
                 envName: ENV
               }
@@ -95,7 +96,8 @@ const developmentConfig = merge([
     plugins: [
       new CopyWebpackPlugin(polyfills),
       new StyleLintPlugin(stylelint),
-      new MiniCssExtractPlugin({filename: "bundle.css"})
+      new MiniCssExtractPlugin({filename: "bundle.css"}),
+      new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1})
     ]
   }
 ]);
