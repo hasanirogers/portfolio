@@ -12,14 +12,14 @@ class ViewAll extends LitElement {
           display: none;
         }
       </style>
-      <view-home class="page" ?active="${_page === 'home'}"></view-home>
-      <view-skills class="page" ?active="${_page === 'skills'}"></view-skills>
-      <view-websites class="page" ?active="${_page === 'websites'}"></view-websites>
-      <view-accomplishments class="page" ?active="${_page === 'accomplishments'}"></view-accomplishments>
-      <view-history class="page" ?active="${_page === 'history'}"></view-history>
-      <view-education class="page" ?active="${_page === 'education'}"></view-education>
-      <view-contact class="page" ?active="${_page === 'contact'}"></view-contact>
-      <view-error class="page" ?active="${_page === 'app/error'}"></view-error>
+      <view-home class="page" ?active="${_page === 'home/'}"></view-home>
+      <view-skills class="page" ?active="${_page === 'skills/'}"></view-skills>
+      <view-websites class="page" ?active="${_page === 'websites/'}"></view-websites>
+      <view-accomplishments class="page" ?active="${_page === 'accomplishments/'}"></view-accomplishments>
+      <view-history class="page" ?active="${_page === 'history/'}"></view-history>
+      <view-education class="page" ?active="${_page === 'education/'}"></view-education>
+      <view-contact class="page" ?active="${_page === 'contact/'}"></view-contact>
+      <view-error class="page" ?active="${_page === 'error/'}"></view-error>
     `
   }
 
@@ -57,31 +57,31 @@ class ViewAll extends LitElement {
 
   _loadPage(page) {
     switch(page) {
-      case 'home':
+      case 'home/':
         import('./view-home.js').then((module) => {
           // Put code in here that you want to run every time when
           // navigating to view1 after my-view1.js is loaded.
         });
         break;
-      case 'skills':
+      case 'skills/':
         import('./view-skills.js');
         break;
-      case 'websites':
+      case 'websites/':
         import('./view-websites.js');
         break;
-      case 'accomplishments':
+      case 'accomplishments/':
         import('./view-accomplishments.js');
         break;
-      case 'history':
+      case 'history/':
         import('./view-history.js');
         break;
-      case 'education':
+      case 'education/':
         import('./view-education.js');
         break;
-      case 'contact':
+      case 'contact/':
         import('./view-contact.js');
       default:
-        page = 'error';
+        page = 'error/';
         import('./view-error.js');
     }
 

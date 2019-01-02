@@ -1,1 +1,13 @@
+body {
+    color: #ffffff;
+    margin: 0;
+    background: #e5c116;
+    overflow: hidden;
+}
 
+main {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+}

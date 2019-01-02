@@ -16,15 +16,18 @@
  */
 
 wp_head(); ?>
-    <!--<me-loading></me-loading>-->
-    <ul>
-        <li><a href="/home">Home</a></li>
-        <li><a href="/education">Education</a></li>
-        <li><a href="/history">History</a></li>
-        <li><a href="/skills">Skills</a></li>
-        <li><a href="/websites">Websites</a></li>
-        <li><a href="/accomplishments">Accomplishments</a></li>
-    </ul>
+
+    <nav class="menu">
+        <me-hamburger class="menu__icon"></me-hamburger>
+        <ul class="menu__items">
+            <li><a href="/home/">Home</a></li>
+            <li><a href="/education/">Education</a></li>
+            <li><a href="/history/">History</a></li>
+            <li><a href="/skills/">Skills</a></li>
+            <li><a href="/websites/">Websites</a></li>
+            <li><a href="/accomplishments/">Accomplishments</a></li>
+        </ul>
+    </nav>
     <main>
         <view-all appTitle="Hasani Rogers"></view-all>
     </main>
