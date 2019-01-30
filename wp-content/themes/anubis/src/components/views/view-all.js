@@ -51,7 +51,7 @@ class ViewAll extends LitElement {
 
   _locationChanged() {
     const path = window.decodeURIComponent(window.location.pathname);
-    const page = path === '/' ? 'home' : path.slice(1);
+    const page = path === '/' ? 'home/' : path.slice(1);
     this._loadPage(page);
   }
 

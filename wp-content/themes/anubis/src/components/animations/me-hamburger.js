@@ -21,6 +21,10 @@ class MeHamburger extends LitElement {
         :host {
           position: relative;
           cursor: pointer;
+
+          display: block;
+          height: 30px;
+          width: 30px;
         }
 
         .burger,
@@ -36,7 +40,7 @@ class MeHamburger extends LitElement {
         }
 
         .burger {
-          top: 0px;
+          top: 10px;
         }
 
         .burger::before {
@@ -67,7 +71,6 @@ class MeHamburger extends LitElement {
 
   transformIcon() {
     this.transform = !this.transform;
-    console.log('?');
   }
 }
 
