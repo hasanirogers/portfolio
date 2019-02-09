@@ -6,6 +6,10 @@
  */
 
 
+// includes
+include_once('inc/taxonomies/skills.php');
+
+
 // disable wp-embed
 function disable_wp_embed(){
     wp_deregister_script( 'wp-embed' );

@@ -13,7 +13,16 @@ class ViewHome extends PageViewElement {
         }
       </style>
       <section>
-        <h2>HOME</h2>
+        <header>
+          <h2>Hasani Rogers</h2>
+          <aside>Front End Developer</aside>
+        </header>
+        <nav>
+          <ul>
+            <li><a href="education/">Education</a></li>
+          </ul>
+        </nav>
+
       </section>
     `
   }
