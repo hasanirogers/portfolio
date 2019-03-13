@@ -16,8 +16,22 @@ function disable_wp_embed(){
 }
 add_action( 'wp_footer', 'disable_wp_embed' );
 
+
 // disable admin bar
 add_filter('show_admin_bar', '__return_false');
+
+// responsive meta tag
+function add_viewport_meta_tag() {
+  echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+}
+add_action('wp_head', 'add_viewport_meta_tag', '1');
+
+// enqueue fonts
+function add_fonts() {
+    wp_enqueue_style( 'ubuntu-font', 'https://fonts.googleapis.com/css?family=Ubuntu', false );
+}
+add_action( 'wp_enqueue_scripts', 'add_fonts' );
+
 
 // enque styles and scripts
 if (!is_admin()) {

@@ -52,7 +52,16 @@ class ViewAll extends LitElement {
   _locationChanged() {
     const path = window.decodeURIComponent(window.location.pathname);
     const page = path === '/' ? 'home/' : path.slice(1);
+    const body = document.querySelector('body');
+    const bodyClass = 'page--'+ this._stripSlash(page);
+
+    body.className = '';
+    body.classList.add(bodyClass);
     this._loadPage(page);
+  }
+
+  _stripSlash(page) {
+    return page.substring(0, page.length - 1);
   }
 
   _loadPage(page) {
@@ -61,6 +70,7 @@ class ViewAll extends LitElement {
         import('./view-home.js').then((module) => {
           // Put code in here that you want to run every time when
           // navigating to view1 after my-view1.js is loaded.
+          document.querySelector('body').setAttribute('data-page', page)
         });
         break;
       case 'skills/':

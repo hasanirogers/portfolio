@@ -19,7 +19,6 @@ class MeHamburger extends LitElement {
     return html `
       <style>
         :host {
-          position: relative;
           cursor: pointer;
 
           display: block;

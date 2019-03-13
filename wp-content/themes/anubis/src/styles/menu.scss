@@ -1,11 +1,13 @@
 .menu {
     position: absolute;
+    right: 0;
+    z-index: 1;
     margin: 0;
     padding: 0;
     width: 110px;
     height: 110px;
     background-color: #ffffff;
-    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 
     li {
@@ -29,11 +31,13 @@
     }
 
     &__icon {
+        position: absolute;
         top: 28px;
-        left: 28px;
+        right: 28px;
     }
 
     &__items {
+        text-align: right;
         margin: 64px;
         padding: 0;
     }
