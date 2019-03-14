@@ -22,25 +22,29 @@ class ViewSkills extends PageViewElement {
   }
 
   firstUpdated() {
-    this._fetchSkillsData(this);
+    this._fetchSkillsData();
   }
-
   render() {
     const skills = this._skillsData || [];
     const skillsDesc = this._skillsDesc || 'Click any of my skills for a brief description.';
+    let skillList;
 
-    const skillList = skills.map((skill) => {
-      return html `
-        <li>
-          <a
-            @click="${this._setDesc}"
-            @mouseover="${this._setDesc}"
-            data-desc="${skill.description}">
-            ${skill.name}
-          </a>
-        </li>
-      `;
-    });
+    if (skills.length > 0) {
+      skillList = skills.map((skill) => {
+        return html `
+          <li>
+            <a
+              @click="${this._setDesc}"
+              @mouseover="${this._setDesc}"
+              data-desc="${skill.description}">
+              ${skill.name}
+            </a>
+          </li>
+        `;
+      });
+    } else {
+      skillList = html`Hmmmm. Looks like you don't have any skills.`;
+    }
 
     return html`
       ${StylesShared}
@@ -87,17 +91,18 @@ class ViewSkills extends PageViewElement {
     this._skillsDesc = event.target.dataset.desc;
   }
 
-  _fetchSkillsData(host) {
-    fetch("/?rest_route=/wp/v2/skills")
+  async _fetchSkillsData() {
+    const skills = await fetch("/?rest_route=/wp/v2/skills/&per_page=99")
     .then(response => response.text())
     .then(text => {
       try {
-        const data = JSON.parse(text);
-        host._skillsData = data;
+        return JSON.parse(text);
       } catch (error) {
-        host._skillsData = [];
+        console.log(error);
       }
-    })
+    });
+
+    this._skillsData = skills;
   }
 }
 
