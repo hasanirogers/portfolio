@@ -24,6 +24,7 @@ class ViewSkills extends PageViewElement {
   firstUpdated() {
     this._fetchSkillsData();
   }
+
   render() {
     const skills = this._skillsData || [];
     const skillsDesc = this._skillsDesc || 'Click any of my skills for a brief description.';
@@ -54,10 +55,15 @@ class ViewSkills extends PageViewElement {
           align-items: center;
           flex-wrap: wrap;
           justify-content: space-evenly;
+          padding-bottom: 4rem;
         }
 
         li {
           list-style: none;
+        }
+
+        li:hover {
+          animation: float 1s infinite ease-in-out alternate;
         }
 
         a {
@@ -76,13 +82,44 @@ class ViewSkills extends PageViewElement {
           text-align: center;
         }
 
+        .skills-desc {
+          width: 100%;
+          margin: 0;
+          padding: 1rem;
+          box-sizing: border-box;
+
+          position: fixed;
+          bottom: 0;
+
+          background: #e5c116;
+          border-top: 1px solid white;
+        }
+
+        @media screen and (min-width: 768px) {
+          ul {
+            margin: 0 10%;
+          }
+
+          .skills-desc {
+            position: static;
+            padding: 0;
+            border: none;
+            background: transparent;
+          }
+        }
+
+        @keyframes float {
+          100% {
+            transform: translateY(-20px);
+          }
+        }
       </style>
+      <h3>Skills</h3>
       <section>
-        <h2>Skills</h2>
         <ul>
           ${skillList}
         </ul>
-        <p>${skillsDesc}</p>
+        <p class="skills-desc">${skillsDesc}</p>
       </section>
     `
   }

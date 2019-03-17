@@ -26,7 +26,11 @@
 
         li {
             display: block;
+            transition: all 300ms ease;
+        }
 
+        li:hover {
+            transform: translateX(1rem);
         }
     }
 
@@ -43,15 +47,3 @@
     }
 }
 
-
-@keyframes open-menu {
-    50% {
-        width: 3000px;
-        height: 3000px;
-    }
-    100% {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}

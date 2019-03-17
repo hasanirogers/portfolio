@@ -35,7 +35,6 @@ class ViewAll extends LitElement {
   }
 
   firstUpdated() {
-    console.log(location);
     installRouter((location) => this._locationChanged(location));
   }
 
