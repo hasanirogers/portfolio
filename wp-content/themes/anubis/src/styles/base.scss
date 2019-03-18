@@ -35,7 +35,7 @@ body > section > aside > * {
 
 body:not(.page--home) > section > aside {
     top: 1rem;
-    right: calc(100% - 236px - 2rem);
+    right: calc(100% - 236px - 1rem);
     transform: translateY(0);
 }
 
