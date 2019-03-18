@@ -12,15 +12,19 @@ class ViewEducation extends PageViewElement {
     }
   }
 
+  constructor() {
+    super();
+    this._educationMarkup = 'Looks like you have no education yet.';
+  }
+
   firstUpdated() {
     this._fetchEducation();
   }
 
   render() {
-    const education = this._educationMarkup || 'Nothing yet';
     const educationElm = this.shadowRoot.querySelector('.education');
 
-    if (educationElm) educationElm.innerHTML = education;
+    if (educationElm) educationElm.innerHTML = this._educationMarkup;
 
     return html`
       ${StylesShared}
@@ -48,7 +52,11 @@ class ViewEducation extends PageViewElement {
         }
       });
 
+    if (education.length > 0) {
       this._educationMarkup = education[0].content.rendered;
+    } else {
+      this._educationMarkup = 'Uh oh. There was a problem grabbing my education.'
+    }
   }
 }
 
