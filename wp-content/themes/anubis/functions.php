@@ -8,6 +8,7 @@
 
 // includes
 include_once('inc/taxonomies/skills.php');
+include_once('inc/post-types/work-history.php');
 
 
 // disable wp-embed

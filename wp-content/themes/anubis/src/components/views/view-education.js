@@ -1,8 +1,6 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
 
-import { StylesShared } from '../styles/shared.js';
-
 class ViewEducation extends PageViewElement {
   static get properties() {
     return {
@@ -22,12 +20,12 @@ class ViewEducation extends PageViewElement {
   }
 
   render() {
-    const educationElm = this.shadowRoot.querySelector('.education');
+    const page = this.shadowRoot.querySelector('.page');
 
-    if (educationElm) educationElm.innerHTML = this._educationMarkup;
+    if (page) page.innerHTML = this._educationMarkup;
 
     return html`
-      ${StylesShared}
+      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <style>
         section {
           text-align: center;
@@ -35,9 +33,7 @@ class ViewEducation extends PageViewElement {
         }
       </style>
       <h3>Education</h3>
-      <section>
-        <div class="education"></div>
-      </section>
+      <section class="page"></section>
     `
   }
 

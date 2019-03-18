@@ -43,11 +43,6 @@ body:not(.page--home) > section > aside > * {
     text-align: left;
 }
 
-view-all {
-    margin: auto;
-    padding-top: 10rem;
-}
-
 h1 {
     margin: 0;
     font-size: 2rem;
@@ -60,9 +55,21 @@ h2 {
     font-size: 1.5rem;
 }
 
+h3 {
+    display: none;
+}
+
+ul {
+    padding: 0;
+}
+
+view-all {
+    margin: auto;
+    padding-top: 10rem;
+}
+
 .page {
-    color: red !important;
-    //animation: fade-in 1s;
+    animation: intro 1s ease-out;
 }
 
 @include media-query(medium) {
@@ -70,11 +77,24 @@ h2 {
         overflow: visible;
     }
 
+    body:not(.page--home) > section > aside {
+        right: calc(100% - 336px - 2rem);
+    }
+
     h1 {
         font-size: 3rem;
     }
 
-    body:not(.page--home) > section > aside {
-        right: calc(100% - 336px - 2rem);
+    h3 {
+        display: block;
+
+        position: absolute;
+        top: 28px;
+        right: 120px;
+
+        margin: 0;
+        font-size: 2rem;
+        text-shadow: 0 2px 2px rgba(0, 0, 0, 0.26);
     }
 }
+

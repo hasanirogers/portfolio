@@ -1,19 +1,19 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
 
-import { StylesShared } from '../styles/shared.js';
 
 class ViewHistory extends PageViewElement {
   render() {
     return html`
-      ${StylesShared}
+      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <style>
         section {
             text-align: center;
         }
       </style>
-      <section>
-        <h2>History</h2>
+      <h3>History</h3>
+      <section class="page">
+        WIP
       </section>
     `
   }

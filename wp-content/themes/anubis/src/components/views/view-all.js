@@ -12,14 +12,14 @@ class ViewAll extends LitElement {
           display: none;
         }
       </style>
-      <view-home class="page" ?active="${_page === 'home/'}"></view-home>
-      <view-skills class="page" ?active="${_page === 'skills/'}"></view-skills>
-      <view-websites class="page" ?active="${_page === 'websites/'}"></view-websites>
-      <view-accomplishments class="page" ?active="${_page === 'accomplishments/'}"></view-accomplishments>
-      <view-history class="page" ?active="${_page === 'history/'}"></view-history>
-      <view-education class="page" ?active="${_page === 'education/'}"></view-education>
-      <view-contact class="page" ?active="${_page === 'contact/'}"></view-contact>
-      <view-error class="page" ?active="${_page === 'error/'}"></view-error>
+      <view-home class="view" ?active="${_page === 'home/'}"></view-home>
+      <view-skills class="view" ?active="${_page === 'skills/'}"></view-skills>
+      <view-websites class="view" ?active="${_page === 'websites/'}"></view-websites>
+      <view-accomplishments class="view" ?active="${_page === 'accomplishments/'}"></view-accomplishments>
+      <view-history class="view" ?active="${_page === 'history/'}"></view-history>
+      <view-education class="view" ?active="${_page === 'education/'}"></view-education>
+      <view-contact class="view" ?active="${_page === 'contact/'}"></view-contact>
+      <view-error class="view" ?active="${_page === 'error/'}"></view-error>
     `
   }
 

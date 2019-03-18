@@ -1,8 +1,6 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
 
-import { StylesShared } from '../styles/shared.js';
-
 class ViewSkills extends PageViewElement {
   static get properties() {
     return {
@@ -48,7 +46,7 @@ class ViewSkills extends PageViewElement {
     }
 
     return html`
-      ${StylesShared}
+      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <style>
         ul {
           display: inline-flex;
@@ -115,7 +113,7 @@ class ViewSkills extends PageViewElement {
         }
       </style>
       <h3>Skills</h3>
-      <section>
+      <section class="page">
         <ul>
           ${skillList}
         </ul>
