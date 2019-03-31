@@ -63,6 +63,15 @@ ul {
     padding: 0;
 }
 
+a {
+    color: map-get($colors, primary);
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 4px;
+    background: #fff;
+}
+
 view-all {
     margin: auto;
     padding-top: 10rem;

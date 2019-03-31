@@ -10,7 +10,8 @@
       'labels' => $labels,
       'public' => true,
       'has_archive' => false,
-      'show_in_rest' => true
+      'show_in_rest' => true,
+      'supports' => array( 'title', 'editor', 'custom-fields' )
     ));
   }
 

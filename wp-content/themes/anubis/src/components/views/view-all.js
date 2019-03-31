@@ -40,7 +40,7 @@ class ViewAll extends LitElement {
 
   updated(changedProps) {
     if (changedProps.has('_page')) {
-      const pageTitle = this.appTitle + ' | ' + this._page;
+      const pageTitle = this.appTitle + ' | ' + this._stripSlash(this._page);
       updateMetadata({
         title: pageTitle,
         description: pageTitle
@@ -69,7 +69,6 @@ class ViewAll extends LitElement {
         import('./view-home.js').then((module) => {
           // Put code in here that you want to run every time when
           // navigating to view1 after my-view1.js is loaded.
-          document.querySelector('body').setAttribute('data-page', page)
         });
         break;
       case 'skills/':

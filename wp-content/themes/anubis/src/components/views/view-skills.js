@@ -4,12 +4,8 @@ import { PageViewElement } from '../helpers/page-view-element.js';
 class ViewSkills extends PageViewElement {
   static get properties() {
     return {
-      _skillsData: {
-        type: Array
-      },
-      _skillsDesc: {
-        type: String
-      }
+      _skillsData: { type: Array },
+      _skillsDesc: { type: String},
     }
   }
 
@@ -25,7 +21,7 @@ class ViewSkills extends PageViewElement {
 
   render() {
     const skills = this._skillsData || [];
-    const skillsDesc = this._skillsDesc || 'Click any of my skills for a brief description.';
+    let skillsDesc = this._skillsDesc || 'Hover or tap on any of my skills for a brief description.';
     let skillList;
 
     if (skills.length > 0) {
@@ -43,6 +39,7 @@ class ViewSkills extends PageViewElement {
       });
     } else {
       skillList = html`Hmmmm. Looks like you don't have any skills.`;
+      skillsDesc = '';
     }
 
     return html`
