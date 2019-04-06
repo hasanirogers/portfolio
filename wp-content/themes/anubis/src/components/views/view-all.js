@@ -35,12 +35,18 @@ class ViewAll extends LitElement {
   }
 
   firstUpdated() {
-    installRouter((location) => this._locationChanged(location));
+    installRouter((location) => {
+      // docs: https://github.com/Polymer/pwa-helpers#routerjs
+      this._locationChanged(location);
+    });
   }
 
   updated(changedProps) {
+    console.log(changedProps);
     if (changedProps.has('_page')) {
       const pageTitle = this.appTitle + ' | ' + this._stripSlash(this._page);
+
+      // docs: https://github.com/Polymer/pwa-helpers#metadatajs
       updateMetadata({
         title: pageTitle,
         description: pageTitle

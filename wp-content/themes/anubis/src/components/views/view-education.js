@@ -20,7 +20,7 @@ class ViewEducation extends PageViewElement {
   }
 
   render() {
-    const page = this.shadowRoot.querySelector('.page');
+    let page = this.shadowRoot.querySelector('.page');
 
     if (page) page.innerHTML = this._educationMarkup;
 
