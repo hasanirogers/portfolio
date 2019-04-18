@@ -1,25 +1,27 @@
 const helperWhitelist = require('./config/helper-whitelist');
 
 module.exports = {
-  // presets: [
-  //   [
-  //     '@babel/preset-env',
-  //     {
-  //       //modules: false,
-  //       //exclude: ['transform-async-to-generator', 'transform-regenerator'],
-  //       // targets: {
-  //       //   "browsers": ["last 2 versions", "ie >= 11"]
-  //       // }
-  //     }
-  //   ]
-  // ],
-  plugins: [
+  presets: [
     [
-      '@babel/external-helpers',
+      '@babel/preset-env',
       {
-        whitelist: helperWhitelist
+        //modules: false,
+        //exclude: ['transform-async-to-generator', 'transform-regenerator'],
+        // targets: {
+        //   "browsers": ["last 2 versions", "ie >= 11"]
+        // }
       }
-    ],
+    ]
+  ],
+  plugins: [
+    // [
+    //   '@babel/external-helpers',
+    //   {
+    //     whitelist: helperWhitelist
+    //   }
+    // ],
+    // '@babel/plugin-external-helpers',
+    '@babel/plugin-transform-regenerator',
     '@babel/syntax-dynamic-import',
     '@babel/syntax-object-rest-spread'
   ],

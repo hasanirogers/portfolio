@@ -34,6 +34,7 @@ const stylelint = {
 const commonConfig = merge([
   {
     entry: [
+      '@babel/polyfill',
       OUTPUT_PATH + '/src/scripts/app.js',
       OUTPUT_PATH + '/src/styles/app.scss'
     ],
