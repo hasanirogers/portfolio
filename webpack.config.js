@@ -34,7 +34,7 @@ const stylelint = {
 const commonConfig = merge([
   {
     entry: [
-      '@babel/polyfill',
+      '@babel/polyfill', // We need this to resolve regeneratorRuntime is not defined error
       OUTPUT_PATH + '/src/scripts/app.js',
       OUTPUT_PATH + '/src/styles/app.scss'
     ],

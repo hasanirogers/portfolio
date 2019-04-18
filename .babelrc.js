@@ -1,5 +1,3 @@
-const helperWhitelist = require('./config/helper-whitelist');
-
 module.exports = {
   presets: [
     [
@@ -14,16 +12,8 @@ module.exports = {
     ]
   ],
   plugins: [
-    // [
-    //   '@babel/external-helpers',
-    //   {
-    //     whitelist: helperWhitelist
-    //   }
-    // ],
-    // '@babel/plugin-external-helpers',
-    '@babel/plugin-transform-regenerator',
-    '@babel/syntax-dynamic-import',
-    '@babel/syntax-object-rest-spread'
+    '@babel/syntax-dynamic-import', // this is needed to support dynamic imports
+    '@babel/syntax-object-rest-spread' // this is needed to support the spred operator
   ],
   env: {
     production: {
