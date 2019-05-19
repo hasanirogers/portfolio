@@ -43,6 +43,11 @@ body:not(.page--home) > section > aside > * {
     text-align: left;
 }
 
+.page--website > section > aside {
+    display: none;
+}
+
+
 h1 {
     margin: 0;
     font-size: 2rem;
