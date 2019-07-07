@@ -3,6 +3,11 @@
     100% {opacity: 1;}
 }
 
+@keyframes paginator-fade {
+    from {opacity: 0.4}
+    to {opacity: 1}
+}
+
 @keyframes open-menu {
     50% {
         width: 3000px;

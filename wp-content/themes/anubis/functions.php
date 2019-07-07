@@ -8,6 +8,7 @@
 
 // includes
 include_once('inc/taxonomies/skills.php');
+include_once('inc/post-types/websites.php');
 include_once('inc/post-types/work-history.php');
 
 
@@ -26,6 +27,9 @@ function add_viewport_meta_tag() {
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 }
 add_action('wp_head', 'add_viewport_meta_tag', '1');
+
+// feature image support
+add_theme_support( 'post-thumbnails', array( 'websites') );
 
 // enqueue fonts
 function add_fonts() {

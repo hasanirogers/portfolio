@@ -42,7 +42,7 @@ class ViewAll extends LitElement {
   }
 
   updated(changedProps) {
-    console.log(changedProps);
+    // console.log(changedProps);
     if (changedProps.has('_page')) {
       const pageTitle = this.appTitle + ' | ' + this._stripSlash(this._page);
 

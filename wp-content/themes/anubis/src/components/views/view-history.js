@@ -47,6 +47,9 @@ class ViewHistory extends PageViewElement {
         }
 
         li {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           margin: 1rem;
           padding: 1rem;
           border-radius: 1rem;
