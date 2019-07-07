@@ -6,7 +6,9 @@ class ViewWebsites extends PageViewElement {
   static get properties() {
     return {
       _websiteData: { type: Object },
-      _pageIndex: { type: Number }
+      _pageIndex: { type: Number },
+      _xDown: { type: Number },
+      _yDown: { type: Number },
     }
   }
 
@@ -14,6 +16,8 @@ class ViewWebsites extends PageViewElement {
     super();
     this._websiteData = {};
     this._pageIndex = 1;
+    this._xDown = null;
+    this.yDown = null;
   }
 
   render() {
@@ -79,8 +83,10 @@ class ViewWebsites extends PageViewElement {
 
   _initPagenator() {
     let pages = this.shadowRoot.querySelectorAll('.pagenator__page');
-    // let xDown = null;
-    // let yDown = null;
+    let pagenator = this.shadowRoot.querySelector('.pagenator');
+
+    pagenator.addEventListener('touchstart', (event) => {this._handleTouchStart(event)}, false);
+    pagenator.addEventListener('touchmove', (event) => {this._handleTouchMove(event)}, false);
 
     this._createPagination();
     if (pages.length > 0) this._showSlide(this._pageIndex);
@@ -132,6 +138,39 @@ class ViewWebsites extends PageViewElement {
     slides[this._pageIndex-1].style.display = 'block';
     navitems[this._pageIndex-1].classList.add('pagenator__navitem--active');
   }
+
+  _handleTouchStart(event) {
+    this._xDown = event.touches[0].clientX;
+    this._yDown = event.touches[0].clientY;
+  }
+
+  _handleTouchMove(event) {
+    if ( !this._xDown || !this._yDown ) {
+        return;
+    }
+
+    let xUp = event.touches[0].clientX;
+    let yUp = event.touches[0].clientY;
+    let xDiff = this._xDown - xUp;
+    let yDiff = this._yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+        if ( xDiff > 0 ) {
+           this._showSlide(this._pageIndex + 1);
+        } else {
+            this._showSlide(this._pageIndex - 1);
+        }
+    } else {
+        if ( yDiff > 0 ) {
+            /* up swipe */
+        } else {
+            /* down swipe */
+        }
+    }
+    /* reset values */
+    this._xDown = null;
+    this._yDown = null;
+};
 }
 
 window.customElements.define('view-websites', ViewWebsites);
