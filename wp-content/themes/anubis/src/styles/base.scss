@@ -86,6 +86,17 @@ view-all {
     animation: intro 1s ease-out;
 }
 
+.round-btn {
+    color: #e5c116;
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem/2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 @include media-query(medium) {
     html {
         overflow: visible;

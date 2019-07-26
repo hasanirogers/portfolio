@@ -30,7 +30,12 @@ class ViewWebsites extends PageViewElement {
 
         return html `
           <div class="pagenator__page">
-            <img src="${heroImg}" />
+            <me-figure
+              title=${website.title.rendered}
+              desc="${website.content.rendered}"
+              bgimage="${heroImg}"
+              sitelink="${website.acf.site_link}">
+            </me-figure>
           </div>
         `;
       });
@@ -74,11 +79,9 @@ class ViewWebsites extends PageViewElement {
         }
       });
 
-    this._websiteData = websites;
+    console.log(websites);
 
-    // websites.map((website) => {
-    //   console.log('da site', website._embedded['wp:featuredmedia'][0].source_url);
-    // });
+    this._websiteData = websites;
   }
 
   _initPagenator() {

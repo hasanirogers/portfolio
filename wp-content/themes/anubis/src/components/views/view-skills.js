@@ -29,6 +29,7 @@ class ViewSkills extends PageViewElement {
         return html `
           <li>
             <a
+              class="round-btn"
               @click="${this._setDesc}"
               @mouseover="${this._setDesc}"
               data-desc="${skill.description}">
@@ -59,16 +60,6 @@ class ViewSkills extends PageViewElement {
 
         li:hover {
           animation: float 1s infinite ease-in-out alternate;
-        }
-
-        a {
-          color: #e5c116;
-          display: inline-block;
-          margin: 1rem;
-          padding: 1rem;
-          background: white;
-          border-radius: 1rem;
-          cursor: pointer;
         }
 
         p {
