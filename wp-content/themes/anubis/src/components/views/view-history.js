@@ -52,8 +52,8 @@ class ViewHistory extends PageViewElement {
           justify-content: center;
           margin: 1rem;
           padding: 1rem;
-          border-radius: 1rem;
-          border: 2px solid white;
+          border-radius: 1rem/2rem;
+          border: 4px solid rgba(255, 255, 255, 0.25);
         }
 
         strong {

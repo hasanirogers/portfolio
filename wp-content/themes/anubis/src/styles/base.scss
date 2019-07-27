@@ -69,12 +69,16 @@ ul {
 }
 
 a {
-    color: map-get($colors, primary);
+    color: #fff;
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
     padding: 2px 4px;
-    background: #fff;
+    transition: color 300ms ease;
+}
+
+a:hover {
+    color: #1d76c4;
 }
 
 view-all {

@@ -48,11 +48,13 @@
 @include media-query(medium) {
     .pagenator__container {
         width: 85%;
+        max-height: 80vh;
     }
 }
 
 @include media-query(huge) {
     .pagenator__container {
         width: 70%;
+        max-height: 80vh;
     }
 }

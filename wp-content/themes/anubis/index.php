@@ -26,6 +26,7 @@ wp_head(); ?>
       <li><a href="/skills/">Skills</a></li>
       <li><a href="/websites/">Websites</a></li>
       <li><a href="/accomplishments/">Accomplishments</a></li>
+      <li><a href="http://resume.hasanirogers.me">Resume</a></li>
     </ul>
   </nav>
 

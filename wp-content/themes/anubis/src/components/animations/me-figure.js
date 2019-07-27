@@ -38,9 +38,7 @@ class MeFigure extends LitElement {
         }
 
         a {
-          position: absolute;
-          bottom: 0;
-          right: 0;
+          background: transparent;
         }
 
         h3 {
@@ -75,7 +73,7 @@ class MeFigure extends LitElement {
           top: 0;
           left: 0;
 
-          background: rgba(0,0,0,0.5);
+          background: rgba(0,0,0,0.75);
           backface-visibility: hidden;
           transform-origin: 0 0;
           transform: rotateY(-90deg);
@@ -95,6 +93,12 @@ class MeFigure extends LitElement {
           transition: transform 0.4s, opacity 0.1s;
         }
 
+        .round-btn {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+
         @media screen and (min-width: 768px) {
           figure {
             border-radius: 4rem;
@@ -106,6 +110,16 @@ class MeFigure extends LitElement {
 
           figcaption div p {
             padding: 0 2rem;
+          }
+
+          img {
+            max-height: 80vh;
+          }
+        }
+
+        @media screen and (min-width: 1440px) {
+          img {
+            max-height: 90vh;
           }
         }
 
