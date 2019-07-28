@@ -102,12 +102,8 @@ view-all {
 }
 
 @include media-query(medium) {
-    html {
-        overflow: visible;
-    }
-
     body:not(.page--home) > section > aside {
-        right: calc(100% - 336px - 2rem);
+        right: calc(100% - 424px - 2rem);
     }
 
     h1 {

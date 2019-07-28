@@ -41,6 +41,7 @@ class ViewHistory extends PageViewElement {
 
         ul {
           display: grid;
+          margin-top: 2rem;
           padding: 0 1rem;
           list-style: none;
           grid-template-columns: 1fr;

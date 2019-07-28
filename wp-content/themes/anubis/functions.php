@@ -22,11 +22,14 @@ add_action( 'wp_footer', 'disable_wp_embed' );
 // disable admin bar
 add_filter('show_admin_bar', '__return_false');
 
-// responsive meta tag
-function add_viewport_meta_tag() {
+// meta tags
+function add_meta_tags() {
+  echo '<meta name="author" content="Hasani Rogers">';
+  echo '<meta name="keywords" content="developer, front end, front end developer, web components, lit element">';
+  echo '<meta name="description" content="I am Front End Developer who specializes in the presentation layer of the web. I\'m also a proponent of web components." />';
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 }
-add_action('wp_head', 'add_viewport_meta_tag', '1');
+add_action('wp_head', 'add_meta_tags', '1');
 
 // feature image support
 add_theme_support( 'post-thumbnails', array( 'websites') );
@@ -47,3 +50,6 @@ if (!is_admin()) {
     wp_enqueue_script('custom-elements-es5-adapter', get_theme_file_uri('/vendor/custom-elements-es5-adapter.js'));
     wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/bundle.js'), ['custom-elements-es5-adapter'], false, true);
 }
+
+// not having this causes a redirect loop on prod for some reason
+remove_filter('template_redirect', 'redirect_canonical');

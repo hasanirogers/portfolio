@@ -88,7 +88,7 @@ class ViewSkills extends PageViewElement {
 
           .skills-desc {
             position: static;
-            padding: 0;
+            padding: 0 2rem;
             border: none;
             background: transparent;
           }

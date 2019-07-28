@@ -20,7 +20,7 @@ function add_skills_taxonomy() {
 
     register_taxonomy(
         'skills',
-        array('work_history'),
+        array('websites', 'work_history'),
         array(
             'hierarchical'    => false,
             'labels'          => $labels,

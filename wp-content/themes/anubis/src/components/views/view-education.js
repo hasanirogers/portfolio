@@ -1,5 +1,7 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+
 
 class ViewEducation extends PageViewElement {
   static get properties() {
@@ -20,10 +22,6 @@ class ViewEducation extends PageViewElement {
   }
 
   render() {
-    let page = this.shadowRoot.querySelector('.page');
-
-    if (page) page.innerHTML = this._educationMarkup;
-
     return html`
       <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <style>
@@ -33,7 +31,9 @@ class ViewEducation extends PageViewElement {
         }
       </style>
       <h3>Education</h3>
-      <section class="page"></section>
+      <section class="page">
+        ${unsafeHTML(this._educationMarkup)}
+      </section>
     `
   }
 
