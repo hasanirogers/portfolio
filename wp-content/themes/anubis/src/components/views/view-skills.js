@@ -63,7 +63,7 @@ class ViewSkills extends PageViewElement {
         }
 
         p {
-          color: rgba(0,0,0,0.25);
+          color: rgba(255,255,255,0.25);
           font-size: 1.5rem;
           text-align: center;
         }
@@ -77,7 +77,7 @@ class ViewSkills extends PageViewElement {
           position: fixed;
           bottom: 0;
 
-          background: #e5c116;
+          background: var(--color-background);
           border-top: 1px solid white;
         }
 

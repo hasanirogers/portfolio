@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 
 class ViewHistory extends PageViewElement {
@@ -23,10 +24,7 @@ class ViewHistory extends PageViewElement {
 
     if (this._workHistoryData.length > 0) {
       workhistory = this._workHistoryData.map(job => {
-        let listItem = document.createElement("li");
-        listItem.innerHTML = job.content.rendered;
-
-        return listItem;
+        return html `<li>${unsafeHTML(job.content.rendered)}</li>`;
       });
     } else {
       workhistory = 'Looks like you don\'t have a work history yet.';

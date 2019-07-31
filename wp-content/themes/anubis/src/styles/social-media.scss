@@ -33,12 +33,12 @@
         svg {
             width: 100%;
             height: 100%;
-            fill: map-get($colors, white);
+            fill: var(--color-white);
             transition: all 300ms ease;
         }
 
         svg:hover {
-            fill: map-get($colors, secondary);
+            fill: var(--color-secondary);
         }
     }
 

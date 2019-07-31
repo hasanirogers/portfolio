@@ -6,7 +6,7 @@
     padding: 0;
     width: 110px;
     height: 110px;
-    background-color: #ffffff;
+    background-color: var(--color-white);
     border-bottom-left-radius: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 
@@ -15,7 +15,7 @@
     }
 
     a {
-        color: #e5c116;
+        color: var(--color-primary);
         line-height: 2;
         font-size: 1.5rem;
         text-decoration: none;

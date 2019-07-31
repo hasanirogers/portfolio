@@ -33,16 +33,16 @@
     height: 32px;
     margin: 0 0.5rem;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--color-white);
     transition: background-color 0.6s ease;
 }
 
 .pagenator__navitem:hover {
-    background-color: #1d76c4;
+    background-color: var(--color-secondary);
 }
 
 .pagenator__navitem--active {
-    border-bottom: 2px solid #1d76c4;
+   background-color: var(--color-primary);
 }
 
 @include media-query(medium) {
