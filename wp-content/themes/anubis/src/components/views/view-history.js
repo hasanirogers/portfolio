@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element';
+import { html } from 'lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 

@@ -31,6 +31,27 @@ const stylelint = {
   failOnError: true
 }
 
+const babel = {
+  loader: 'babel-loader',
+  options: {
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: 'false',
+          targets: {
+            browsers: '> 1%, IE 11, not dead'
+          }
+        }
+      ]
+    ],
+    plugins: [
+      '@babel/syntax-dynamic-import', // this is needed to support dynamic imports
+      '@babel/syntax-object-rest-spread' // this is needed to support the spred operator
+    ]
+  }
+};
+
 const commonConfig = merge([
   {
     entry: [
@@ -48,22 +69,9 @@ const commonConfig = merge([
       rules: [
         {
           test: /\.js$/,
-          // We need to transpile Polymer,so whitelist packages containing ES modules
-          exclude: /node_modules\/(?!(@webcomponents\/shadycss|lit-html|@polymer|@vaadin)\/).*/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                babelrc: true,
-                extends: join(__dirname + '/.babelrc'),
-                cacheDirectory: true,
-                envName: ENV
-              }
-            }
-            // {
-            //   loader: 'uglify-template-string-loader'
-            // }
-          ]
+          // whitelist packages containing ES modules
+          exclude: /node_modules\/(?!(@webcomponents\/shadycss|lit-html|lit-element|@polymer|@vaadin)\/).*/,
+          use: [babel]
         },
 
         {

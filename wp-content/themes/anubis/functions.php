@@ -18,9 +18,23 @@ function disable_wp_embed(){
 }
 add_action( 'wp_footer', 'disable_wp_embed' );
 
-
 // disable admin bar
 add_filter('show_admin_bar', '__return_false');
+
+// disable emojis
+function disable_emojis() {
+  remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+  remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+  remove_action( 'wp_print_styles', 'print_emoji_styles' );
+  remove_action( 'admin_print_styles', 'print_emoji_styles' );
+  remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+  remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+  add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+  add_filter( 'wp_resource_hints', 'disable_emojis_remove_dns_prefetch', 10, 2 );
+}
+add_action( 'init', 'disable_emojis' );
+
 
 // meta tags
 function add_meta_tags() {
@@ -31,6 +45,23 @@ function add_meta_tags() {
 }
 add_action('wp_head', 'add_meta_tags', '1');
 
+// disable meta tag
+remove_action('wp_head', 'wp_generator');
+
+// es5 adapter
+function add_es5_adapter() {
+  if (!is_admin()) {
+    echo '<script>
+      if (!window.customElements) {
+        document.write(\'<!--\');
+      }
+    </script>
+    <script src="'. get_theme_file_uri('vendor/custom-elements-es5-adapter.js') .'"></script>
+    <!-- DO NOT REMOVE THIS COMMENT -->';
+  }
+}
+add_action('wp_head', 'add_es5_adapter', '1');
+
 // feature image support
 add_theme_support( 'post-thumbnails', array( 'websites') );
 
@@ -40,15 +71,13 @@ function add_fonts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_fonts' );
 
-
 // enque styles and scripts
 wp_enqueue_style('admin-css', get_theme_file_uri('/admin.css'));
 
 if (!is_admin()) {
     wp_enqueue_style('bundle-css', get_theme_file_uri('/bundles/bundle.css'));
-
-    wp_enqueue_script('custom-elements-es5-adapter', get_theme_file_uri('/vendor/custom-elements-es5-adapter.js'));
-    wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/bundle.js'), ['custom-elements-es5-adapter'], false, true);
+    wp_enqueue_script('webcomponent-loader', get_theme_file_uri('/vendor/webcomponents-loader.js'), [], false, true);
+    wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/bundle.js'), [], false, true);
 }
 
 // not having this causes a redirect loop on prod for some reason

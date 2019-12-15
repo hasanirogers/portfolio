@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element';
+import { html } from 'lit-element';
 import { PageViewElement } from '../helpers/page-view-element.js';
 
 class ViewSkills extends PageViewElement {
