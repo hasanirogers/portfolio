@@ -1,6 +1,6 @@
-import { LitElement, html } from 'lit-element';
+import { html, LitElement } from 'lit-element';
 
-class MeHamburger extends LitElement {
+export class MeHamburger extends LitElement {
   static get properties() {
     return {
       transform: {
@@ -72,5 +72,3 @@ class MeHamburger extends LitElement {
     this.transform = !this.transform;
   }
 }
-
-customElements.define('me-hamburger', MeHamburger)

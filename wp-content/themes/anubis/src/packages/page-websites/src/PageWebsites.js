@@ -1,4 +1,5 @@
 import { html, LitElement } from 'lit-element';
+import '../../me-figure/me-figure.js';
 
 export class PageWebsites extends LitElement {
   static get properties() {

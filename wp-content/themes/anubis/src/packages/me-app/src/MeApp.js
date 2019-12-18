@@ -1,13 +1,16 @@
 import { LitElement, html, css } from 'lit-element';
-// import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { Router } from '@vaadin/router';
+// import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
+import { templateAside } from './templateAside.js';
 
+import '../../me-hamburger/me-hamburger.js';
 import '../../page-home/page-home.js';
 import '../../page-accomplishments/page-accomplishments.js';
 import '../../page-education/page-education.js';
 import '../../page-history/page-history.js';
 import '../../page-skills/page-skills.js';
 import '../../page-websites/page-websites.js';
+
 
 export class MeApp extends LitElement {
 
@@ -21,28 +24,53 @@ export class MeApp extends LitElement {
   static get properties() {
     return {
       title: { type: String },
-      page: { type: String },
+      page: { type: String, reflect: true, },
+      menuOpened: { type: Boolean },
       smallScreen: { type: Boolean },
     };
   }
 
   constructor() {
     super();
+
+    // reactive properties
     this.page = location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
+    this.menuOpened = false;
 
     // installMediaQueryWatcher(`(min-width: 768px)`, (matches) => {
     //   this.smallScreen = !matches;
     // });
+
+    // standard properties
+    this.hamburger;
   }
 
   render() {
     return html`
-      <section id="outlet"></section>
+      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
+      <nav class="menu ${this.menuOpened ? 'menu--opened' : ''}">
+        <me-hamburger @click=${this.handleHamburger} class="menu__icon"></me-hamburger>
+        <ul class="menu__items">
+          <li><a @click=${() => this.handleLink('home')}>Home</a></li>
+          <li><a @click=${() => this.handleLink('education')}>Education</a></li>
+          <li><a @click=${() => this.handleLink('history')}>Work History</a></li>
+          <li><a @click=${() => this.handleLink('skills')}>Skills</a></li>
+          <li><a @click=${() => this.handleLink('websites')}>Websites</a></li>
+          <li><a @click=${() => this.handleLink('accomplishments')}>Accomplishments</a></li>
+          <li><a href="http://resume.hasanirogers.me">Resume</a></li>
+        </ul>
+      </nav>
+
+      <section>
+        <main></main>
+        <aside>${templateAside}</aside>
+      </section>
     `;
   }
 
   firstUpdated() {
-    const router = new Router(this.shadowRoot.getElementById('outlet'));
+    const router = new Router(this.shadowRoot.querySelector('main'));
+    this.hamburger = this.shadowRoot.querySelector('me-hamburger');
 
     router.setRoutes([
       {
@@ -88,7 +116,18 @@ export class MeApp extends LitElement {
    */
   switchRoute(route) {
     this.page = route;
-    if (route === '' || route === '/') this.page = 'main';
+    if (route === '' || route === '/') this.page = 'home';
     Router.go(`/${route}`);
+  }
+
+  handleHamburger() {
+    this.hamburger.transformIcon();
+    this.menuOpened = !this.menuOpened;
+  }
+
+  handleLink(page) {
+    this.hamburger.transformIcon();
+    this.menuOpened = false;
+    this.switchRoute(page);
   }
 }

@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
-class MeFigure extends LitElement {
+export class MeFigure extends LitElement {
   static get properties() {
     return {
       opened: {
@@ -162,5 +162,3 @@ class MeFigure extends LitElement {
     this.opened = !this.opened;
   }
 }
-
-customElements.define('me-figure', MeFigure);

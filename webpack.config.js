@@ -72,7 +72,7 @@ const commonConfig = merge([
   {
     entry: [
       'regenerator-runtime/runtime',
-      themedir + '/src/scripts/app.js',
+      themedir + '/src/packages/me-app/me-app.js',
       themedir + '/src/styles/app.scss'
     ],
 
