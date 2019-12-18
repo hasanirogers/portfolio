@@ -32,7 +32,8 @@ wp_head(); ?>
 
   <section>
     <main>
-      <view-all appTitle="Hasani Rogers"></view-all>
+      <!-- <view-all appTitle="Hasani Rogers"></view-all> -->
+      <me-app></me-app>
     </main>
     <aside>
       <div>

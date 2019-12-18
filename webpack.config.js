@@ -9,19 +9,19 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const ENV = process.argv.find(arg => arg.includes('production')) ? 'production' : 'development';
-const OUTPUT_PATH = resolve('wp-content/themes/anubis');
 
+const themedir = resolve('wp-content/themes/anubis');
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
 
 const polyfills = [
   {
     from: resolve(`${webcomponentsjs}/webcomponents-*.{js,map}`),
-    to: join(OUTPUT_PATH, 'vendor'),
+    to: join(themedir, 'vendor'),
     flatten: true
   },
   {
     from: resolve(`${webcomponentsjs}/custom-elements-es5-adapter.js`),
-    to: join(OUTPUT_PATH, 'vendor'),
+    to: join(themedir, 'vendor'),
     flatten: true
   }
 ];
@@ -31,7 +31,7 @@ const stylelint = {
   failOnError: true
 }
 
-const babel = {
+const babel = [{
   loader: 'babel-loader',
   options: {
     presets: [
@@ -50,14 +50,30 @@ const babel = {
       '@babel/syntax-object-rest-spread' // this is needed to support the spred operator
     ]
   }
-};
+}];
+
+const minicssextract = [
+  MiniCssExtractPlugin.loader,
+  {
+    loader: "css-loader",
+    options: {sourceMap: true}
+  },
+  {
+    loader: "postcss-loader",
+    options: {sourceMap: true}
+  },
+  {
+    loader: "sass-loader",
+    options: {sourceMap: true}
+  }
+];
 
 const commonConfig = merge([
   {
     entry: [
-      '@babel/polyfill', // We need this to resolve regeneratorRuntime is not defined error
-      OUTPUT_PATH + '/src/scripts/app.js',
-      OUTPUT_PATH + '/src/styles/app.scss'
+      'regenerator-runtime/runtime',
+      themedir + '/src/scripts/app.js',
+      themedir + '/src/styles/app.scss'
     ],
 
     output: {
@@ -71,27 +87,13 @@ const commonConfig = merge([
           test: /\.js$/,
           // whitelist packages containing ES modules
           exclude: /node_modules\/(?!(@webcomponents\/shadycss|lit-html|lit-element|@polymer|@vaadin)\/).*/,
-          use: [babel]
+          use: babel
         },
 
         {
           test: /\.scss$/,
           exclude: /node_modules/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: "css-loader",
-              options: {sourceMap: true}
-            },
-            {
-              loader: "postcss-loader",
-              options: {sourceMap: true}
-            },
-            {
-              loader: "sass-loader",
-              options: {sourceMap: true}
-            }
-          ]
+          use: minicssextract
 
         }
       ]
