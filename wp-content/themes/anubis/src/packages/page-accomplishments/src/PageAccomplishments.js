@@ -1,7 +1,25 @@
-import { html, LitElement } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
 
 export class PageAccomplishments extends LitElement {
+  static get styles() {
+    return [
+      stylesBase,
+      stylesAnimations,
+      css`
+        ul {
+          margin: 0 10%;
+          font-size: 1.5rem;
+        }
+
+        li {
+          margin-bottom: 2rem;
+        }
+      `
+    ]
+  }
+
   static get properties() {
     return {
       accomplishments: { type: String }
@@ -11,16 +29,6 @@ export class PageAccomplishments extends LitElement {
   render() {
     return html`
       <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
-      <style>
-        ul {
-          margin: 0 10%;
-          font-size: 1.5rem;
-        }
-
-        li {
-          margin-bottom: 2rem;
-        }
-      </style>
       <h3>Accomplishments</h3>
       <section class="page">
         ${unsafeHTML(this.accomplishments)}

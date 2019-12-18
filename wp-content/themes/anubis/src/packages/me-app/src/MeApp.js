@@ -1,7 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
 import { Router } from '@vaadin/router';
 // import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
-import { templateAside } from './templateAside.js';
+import { stylesBase, stylesAnimations } from './styles.js';
+import { templateAside } from './templates.js';
 
 import '../../me-hamburger/me-hamburger.js';
 import '../../page-home/page-home.js';
@@ -14,12 +15,61 @@ import '../../page-websites/page-websites.js';
 
 export class MeApp extends LitElement {
 
-  // static get styles() {
-  //   return [
-  //     css`
-  //     `,
-  //   ];
-  // }
+  static get styles() {
+    return [
+      stylesBase,
+      stylesAnimations,
+      css`
+        section {
+          min-height: 100vh;
+          display: flex;
+        }
+
+        main {
+          display: flex;
+          flex: 1;
+        }
+
+        main > * {
+          margin: auto;
+          padding-top: 10rem;
+        }
+
+        aside {
+          position: absolute;
+          right: 2rem;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: all 1s ease;
+        }
+
+        aside > * {
+          text-align: right;
+          margin: auto;
+        }
+
+        :host(:not([page="home"])) aside {
+          top: 1rem;
+          right: calc(100% - 236px - 1rem);
+          transform: translateY(0)
+        }
+
+        @media screen and (min-width: 768px) {
+          :host(:not([page="home"])) aside {
+            right: calc(100% - 424px - 2rem);
+          }
+        }
+
+        :host(:not([page="home"])) aside > * {
+          text-align: left;
+        }
+
+        :host([page="websites"]) aside {
+          display: none;
+        }
+      `,
+    ];
+  }
 
   static get properties() {
     return {

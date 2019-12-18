@@ -1,23 +1,9 @@
-import { html, LitElement } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
 
 export class MeHamburger extends LitElement {
-  static get properties() {
-    return {
-      transform: {
-        type: Boolean,
-        reflect: true
-      }
-    }
-  }
-
-  constructor() {
-    super();
-    this.transform = false;
-  }
-
-  render() {
-    return html `
-      <style>
+  static get styles() {
+    return [
+      css`
         :host {
           cursor: pointer;
 
@@ -63,7 +49,23 @@ export class MeHamburger extends LitElement {
           width: 20px;
           transform: rotate(405deg);
         }
-      </style>
+      `
+    ]
+  }
+
+  static get properties() {
+    return {
+      transform: { type: Boolean, reflect: true }
+    }
+  }
+
+  constructor() {
+    super();
+    this.transform = false;
+  }
+
+  render() {
+    return html `
       <div class="burger"></div>
     `
   }

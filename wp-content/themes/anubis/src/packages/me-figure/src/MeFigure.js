@@ -1,37 +1,13 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { stylesBase, stylesAnimations } from '../../me-app/src/styles';
 
 export class MeFigure extends LitElement {
-  static get properties() {
-    return {
-      opened: {
-        type: Boolean,
-        reflect: true,
-      },
-      bgimage: {
-        type: String,
-      },
-      title: {
-        type: String
-      },
-      desc: {
-        type: String
-      },
-      sitelink: {
-        type: String
-      }
-    }
-  }
-
-  constructor() {
-    super();
-    this.opened = false;
-  }
-
-  render() {
-    return html `
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
-      <style>
+  static get styles() {
+    return [
+      stylesBase,
+      stylesAnimations,
+      css`
         :host {
           perspective: 1700px;
 	        perspective-origin: 0 50%;
@@ -117,12 +93,6 @@ export class MeFigure extends LitElement {
           }
         }
 
-        @media screen and (min-width: 1440px) {
-          img {
-            max-height: 90vh;
-          }
-        }
-
         @media screen and (max-width: 768px) {
           figcaption div p {
             /* line clamp */
@@ -135,7 +105,45 @@ export class MeFigure extends LitElement {
             /* autoprefixer: on */
           }
         }
-      </style>
+
+        @media screen and (min-width: 1440px) {
+          img {
+            max-height: 90vh;
+          }
+        }
+      `
+    ]
+  }
+
+  static get properties() {
+    return {
+      opened: {
+        type: Boolean,
+        reflect: true,
+      },
+      bgimage: {
+        type: String,
+      },
+      title: {
+        type: String
+      },
+      desc: {
+        type: String
+      },
+      sitelink: {
+        type: String
+      }
+    }
+  }
+
+  constructor() {
+    super();
+    this.opened = false;
+  }
+
+  render() {
+    return html `
+      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <figure
         @click="${() => {this.toggleOpen();}}"
         @mouseover="${() => {this.open();}}"

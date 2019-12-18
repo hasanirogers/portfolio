@@ -1,31 +1,24 @@
-import { html, LitElement } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
+import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
 
 export class PageSkills extends LitElement {
-  static get properties() {
-    return {
-      skillsData: { type: Array },
-      skillsDesc: { type: String},
-    }
-  }
-
-  constructor() {
-    super();
-    this.skillsData = [];
-    this.skillsDesc = '';
-  }
-
-  render() {
-    const skillsDesc = this.skillsDesc || 'Hover or tap on any of my skills for a brief description.';
-
-    return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
-      <style>
+  static get styles() {
+    return [
+      stylesBase,
+      stylesAnimations,
+      css`
         ul {
           display: inline-flex;
           align-items: center;
           flex-wrap: wrap;
           justify-content: space-evenly;
           padding-bottom: 4rem;
+        }
+
+        @media screen and (min-width: 768px) {
+          ul {
+            margin: 0 10%;
+          }
         }
 
         li {
@@ -56,10 +49,6 @@ export class PageSkills extends LitElement {
         }
 
         @media screen and (min-width: 768px) {
-          ul {
-            margin: 0 10%;
-          }
-
           .skills-desc {
             position: static;
             padding: 0 2rem;
@@ -67,13 +56,28 @@ export class PageSkills extends LitElement {
             background: transparent;
           }
         }
+      `
+    ]
+  }
 
-        @keyframes float {
-          100% {
-            transform: translateY(-20px);
-          }
-        }
-      </style>
+  static get properties() {
+    return {
+      skillsData: { type: Array },
+      skillsDesc: { type: String},
+    }
+  }
+
+  constructor() {
+    super();
+    this.skillsData = [];
+    this.skillsDesc = '';
+  }
+
+  render() {
+    const skillsDesc = this.skillsDesc || 'Hover or tap on any of my skills for a brief description.';
+
+    return html`
+      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <h3>Skills</h3>
       <section class="page">
         <ul>

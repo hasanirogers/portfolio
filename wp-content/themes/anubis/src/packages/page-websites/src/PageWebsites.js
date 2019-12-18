@@ -1,7 +1,20 @@
-import { html, LitElement } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
+import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
 import '../../me-figure/me-figure.js';
 
 export class PageWebsites extends LitElement {
+  static get styles() {
+    return [
+      stylesBase,
+      stylesAnimations,
+      css`
+        section {
+          text-align: center;
+        }
+      `
+    ]
+  }
+
   static get properties() {
     return {
       websiteData: { type: Object },
@@ -20,37 +33,13 @@ export class PageWebsites extends LitElement {
   }
 
   render() {
-    let pages;
-
-    if (this.websiteData.length > 0) {
-      pages = this.websiteData.map((website, index) => {
-        const heroImg = website._embedded['wp:featuredmedia'][0].source_url;
-
-        return html `
-          <div class="pagenator__page">
-            <me-figure
-              title=${website.title.rendered}
-              desc="${website.content.rendered}"
-              bgimage="${heroImg}"
-              sitelink="${website.acf.site_link}">
-            </me-figure>
-          </div>
-        `;
-      });
-    }
-
     return html`
       <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
-      <style>
-        section {
-            text-align: center;
-        }
-      </style>
       <h3>Websites</h3>
       <section class="page">
         <section class="pagenator">
           <div class="pagenator__container">
-            ${pages}
+            ${this.listWebsites()}
           </div>
           <div class="pagenator__paginator"></div>
         </section>
@@ -64,6 +53,30 @@ export class PageWebsites extends LitElement {
 
   updated() {
     this.initPagenator();
+  }
+
+  listWebsites() {
+    let pages;
+    let hero;
+
+    if (this.websiteData.length > 0) {
+      pages = this.websiteData.map((website, index) => {
+        hero = website._embedded['wp:featuredmedia'][0].source_url;
+
+        return html `
+          <div class="pagenator__page">
+            <me-figure
+              title=${website.title.rendered}
+              desc="${website.content.rendered}"
+              bgimage="${hero}"
+              sitelink="${website.acf.site_link}">
+            </me-figure>
+          </div>
+        `;
+      });
+    }
+
+    return pages;
   }
 
   async fetchWebsites() {
