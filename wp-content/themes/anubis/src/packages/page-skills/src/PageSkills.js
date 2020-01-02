@@ -77,7 +77,6 @@ export class PageSkills extends LitElement {
     const skillsDesc = this.skillsDesc || 'Hover or tap on any of my skills for a brief description.';
 
     return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <h3>Skills</h3>
       <section class="page">
         <ul>

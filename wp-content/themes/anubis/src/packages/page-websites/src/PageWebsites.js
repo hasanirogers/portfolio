@@ -1,5 +1,6 @@
 import { html, css, LitElement } from 'lit-element';
 import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
+import { stylesPaginator } from './stylesPaginator.js';
 import '../../me-figure/me-figure.js';
 
 export class PageWebsites extends LitElement {
@@ -7,6 +8,7 @@ export class PageWebsites extends LitElement {
     return [
       stylesBase,
       stylesAnimations,
+      stylesPaginator,
       css`
         section {
           text-align: center;
@@ -34,7 +36,6 @@ export class PageWebsites extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <h3>Websites</h3>
       <section class="page">
         <section class="pagenator">

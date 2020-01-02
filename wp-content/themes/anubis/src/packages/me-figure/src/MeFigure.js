@@ -143,7 +143,6 @@ export class MeFigure extends LitElement {
 
   render() {
     return html `
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <figure
         @click="${() => {this.toggleOpen();}}"
         @mouseover="${() => {this.open();}}"

@@ -66,7 +66,6 @@ export class PageHistory extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <h3>History</h3>
       <section class="page">
         <ul>${this.displayWorkHistory()}</ul>

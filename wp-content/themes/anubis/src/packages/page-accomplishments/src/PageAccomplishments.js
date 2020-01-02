@@ -28,7 +28,6 @@ export class PageAccomplishments extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <h3>Accomplishments</h3>
       <section class="page">
         ${unsafeHTML(this.accomplishments)}

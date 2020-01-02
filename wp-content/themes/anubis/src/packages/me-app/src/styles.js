@@ -71,7 +71,6 @@ export const stylesBase = css`
   }
 `;
 
-
 export const stylesAnimations = css`
   @keyframes fade-in {
       0% {opacity: 0;}

@@ -24,7 +24,6 @@ export class PageEducation extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <h3>Education</h3>
       <section class="page">
         ${unsafeHTML(this.education)}

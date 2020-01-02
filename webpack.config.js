@@ -1,19 +1,18 @@
-// reference: https://github.com/web-padawan/polymer3-webpack-starter/blob/ff1ea616e2a4f1853e193efea5cc4f1311acd74b/webpack.config.js
 'use strict';
 
 const { resolve, join } = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const StyleLintPlugin = require('stylelint-webpack-plugin');
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const ENV = process.argv.find(arg => arg.includes('production')) ? 'production' : 'development';
 
 const themedir = resolve('wp-content/themes/anubis');
 const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
 
-const polyfills = [
+const copyfiles = [
   {
     from: resolve(`${webcomponentsjs}/webcomponents-*.{js,map}`),
     to: join(themedir, 'vendor'),
@@ -25,11 +24,6 @@ const polyfills = [
     flatten: true
   }
 ];
-
-const stylelint = {
-  context: './src',
-  failOnError: true
-}
 
 const babel = [{
   loader: 'babel-loader',
@@ -52,28 +46,33 @@ const babel = [{
   }
 }];
 
-const minicssextract = [
-  MiniCssExtractPlugin.loader,
-  {
-    loader: "css-loader",
-    options: {sourceMap: true}
-  },
-  {
-    loader: "postcss-loader",
-    options: {sourceMap: true}
-  },
-  {
-    loader: "sass-loader",
-    options: {sourceMap: true}
-  }
-];
+// const stylelint = {
+//   context: './src',
+//   failOnError: true
+// }
+
+// const minicssextract = [
+//   MiniCssExtractPlugin.loader,
+//   {
+//     loader: "css-loader",
+//     options: {sourceMap: true}
+//   },
+//   {
+//     loader: "postcss-loader",
+//     options: {sourceMap: true}
+//   },
+//   {
+//     loader: "sass-loader",
+//     options: {sourceMap: true}
+//   }
+// ];
 
 const commonConfig = merge([
   {
     entry: [
       'regenerator-runtime/runtime',
       themedir + '/src/packages/me-app/me-app.js',
-      themedir + '/src/styles/app.scss'
+      // themedir + '/src/styles/app.scss'
     ],
 
     output: {
@@ -90,12 +89,12 @@ const commonConfig = merge([
           use: babel
         },
 
-        {
-          test: /\.scss$/,
-          exclude: /node_modules/,
-          use: minicssextract
+        // {
+        //   test: /\.scss$/,
+        //   exclude: /node_modules/,
+        //   use: minicssextract
 
-        }
+        // }
       ]
     }
   }
@@ -105,9 +104,9 @@ const developmentConfig = merge([
   {
     devtool: 'cheap-module-source-map',
     plugins: [
-      new CopyWebpackPlugin(polyfills),
-      new StyleLintPlugin(stylelint),
-      new MiniCssExtractPlugin({filename: "bundle.css"}),
+      new CopyWebpackPlugin(copyfiles),
+      // new StyleLintPlugin(stylelint),
+      // new MiniCssExtractPlugin({filename: "bundle.css"}),
       new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1})
     ]
   }

@@ -75,7 +75,6 @@ add_action( 'wp_enqueue_scripts', 'add_fonts' );
 wp_enqueue_style('admin-css', get_theme_file_uri('/admin.css'));
 
 if (!is_admin()) {
-    wp_enqueue_style('bundle-css', get_theme_file_uri('/bundles/bundle.css'));
     wp_enqueue_script('webcomponent-loader', get_theme_file_uri('/vendor/webcomponents-loader.js'), [], false, true);
     wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/bundle.js'), [], false, true);
 }

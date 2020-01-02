@@ -1,7 +1,9 @@
 import { LitElement, html, css } from 'lit-element';
 import { Router } from '@vaadin/router';
 // import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
-import { stylesBase, stylesAnimations } from './styles.js';
+import { stylesBase, stylesAnimations} from './styles.js';
+import { stylesMenu } from './stylesMenu.js';
+import { stylesSocialMedia } from './stylesSocialMedia.js';
 import { templateAside } from './templates.js';
 
 import '../../me-hamburger/me-hamburger.js';
@@ -19,6 +21,8 @@ export class MeApp extends LitElement {
     return [
       stylesBase,
       stylesAnimations,
+      stylesMenu,
+      stylesSocialMedia,
       css`
         section {
           min-height: 100vh;
@@ -97,7 +101,6 @@ export class MeApp extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/wp-content/themes/anubis/bundles/bundle.css">
       <nav class="menu ${this.menuOpened ? 'menu--opened' : ''}">
         <me-hamburger @click=${this.handleHamburger} class="menu__icon"></me-hamburger>
         <ul class="menu__items">
