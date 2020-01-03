@@ -1,34 +1,32 @@
 {
   "name": "hasanirogers",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Bringing wordpress to the future.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "build:watch": "webpack --watch"
+    "build": "webpack --mode=development",
+    "build:watch": "webpack --watch --mode=development"
   },
   "author": "Hasani Rogers <hasani.rogers@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
-    "@polymer/lit-element": "0.6.3",
     "@polymer/polymer": "3.1.0",
-    "@webcomponents/webcomponentsjs": "1.0.18",
+    "@vaadin/router": "^1.5.2",
+    "@webcomponents/webcomponentsjs": "^2.4.0",
+    "lit-element": "2.0.0",
+    "lit-html": "1.0.0",
     "pwa-helpers": "0.8.2",
     "stylelint-config-sass-guidelines": "5.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.2.0",
-    "@babel/plugin-syntax-dynamic-import": "7.0.0",
-    "@babel/plugin-syntax-object-rest-spread": "7.0.0",
-    "@babel/preset-env": "7.2.0",
-    "autoprefixer": "9.3.1",
-    "babel-eslint": "10.0.1",
-    "babel-loader": "8.0.4",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-template-html-minifier": "=2.1.1",
+    "@babel/core": "7.7.5",
+    "@babel/plugin-syntax-dynamic-import": "7.7.4",
+    "@babel/plugin-syntax-object-rest-spread": "7.7.4",
+    "@babel/preset-env": "7.7.6",
+    "babel-loader": "8.0.6",
     "babel-preset-env": "1.7.0",
-    "babel-preset-minify": "0.5.0",
+    "regenerator-runtime": "^0.13.3",
     "copy-webpack-plugin": "4.6.0",
     "css-loader": "1.0.1",
     "debug": "2.2.0",
@@ -39,8 +37,9 @@
     "sass-loader": "7.1.0",
     "stylelint": "9.8.0",
     "stylelint-webpack-plugin": "0.10.5",
-    "webpack": "4.25.1",
+    "webpack": "4.41.2",
     "webpack-cli": "3.1.2",
-    "webpack-merge": "4.1.4"
+    "webpack-merge": "4.1.4",
+    "autoprefixer": "9.3.1"
   }
 }
