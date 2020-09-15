@@ -46,7 +46,9 @@ export class PageAccomplishments extends LitElement {
         try {
           return JSON.parse(text);
         } catch(error) {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return null;
         }
       });
 

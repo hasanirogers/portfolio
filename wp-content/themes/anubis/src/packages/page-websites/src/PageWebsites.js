@@ -61,7 +61,7 @@ export class PageWebsites extends LitElement {
     let hero;
 
     if (this.websiteData.length > 0) {
-      pages = this.websiteData.map((website, index) => {
+      pages = this.websiteData.map((website) => {
         hero = website._embedded['wp:featuredmedia'][0].source_url;
 
         return html `
@@ -87,7 +87,9 @@ export class PageWebsites extends LitElement {
         try {
           return JSON.parse(text);
         } catch (error) {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return null;
         }
       });
 
@@ -95,8 +97,8 @@ export class PageWebsites extends LitElement {
   }
 
   initPagenator() {
-    let pages = this.shadowRoot.querySelectorAll('.pagenator__page');
-    let pagenator = this.shadowRoot.querySelector('.pagenator');
+    const pages = this.shadowRoot.querySelectorAll('.pagenator__page');
+    const pagenator = this.shadowRoot.querySelector('.pagenator');
 
     pagenator.addEventListener('touchstart', (event) => {this.handleTouchStart(event)}, false);
     pagenator.addEventListener('touchmove', (event) => {this.handleTouchMove(event)}, false);
@@ -106,16 +108,16 @@ export class PageWebsites extends LitElement {
   }
 
   createPagination() {
-    let html = "";
-    let slides = this.shadowRoot.querySelectorAll('.pagenator__page');
-    let paginator = this.shadowRoot.querySelector('.pagenator__paginator');
+    let markup = "";
+    const slides = this.shadowRoot.querySelectorAll('.pagenator__page');
+    const paginator = this.shadowRoot.querySelector('.pagenator__paginator');
 
     slides.forEach((slide, index) => {
-      let page = index + 1;
-      html += '<a class="pagenator__navitem"><span>'+ page +'</span></a>';
+      const page = index + 1;
+      markup += `<a class="pagenator__navitem"><span>${page}</span></a>`;
     });
 
-    paginator.innerHTML = html;
+    paginator.innerHTML = markup;
 
     this.shadowRoot.querySelectorAll('.pagenator__navitem').forEach((navitem, index) => {
       navitem.addEventListener('click', () => {
@@ -126,8 +128,8 @@ export class PageWebsites extends LitElement {
   }
 
   showSlide(slideNumber) {
-    let navitems = this.shadowRoot.querySelectorAll('.pagenator__navitem');
-    let slides = this.shadowRoot.querySelectorAll('.pagenator__page');
+    const navitems = this.shadowRoot.querySelectorAll('.pagenator__navitem');
+    const slides = this.shadowRoot.querySelectorAll('.pagenator__page');
 
     this.pageIndex = slideNumber;
 
@@ -138,12 +140,13 @@ export class PageWebsites extends LitElement {
     if (slideNumber < 1) this.pageIndex = slides.length;
 
     // hide all of the slides
-    slides.forEach((slide, index) => {
-      slide.style.display = "none";
+    slides.forEach((slide) => {
+      const theSlide = slide;
+      theSlide.style.display = "none";
     });
 
-    // remove acitve from each paginator item
-    navitems.forEach((navitem, index) => {
+    // remove active from each paginator item
+    navitems.forEach((navitem) => {
       navitem.classList.remove('pagenator__navitem--active');
     });
 
@@ -162,10 +165,10 @@ export class PageWebsites extends LitElement {
         return;
     }
 
-    let xUp = event.touches[0].clientX;
-    let yUp = event.touches[0].clientY;
-    let xDiff = this.xDown - xUp;
-    let yDiff = this.yDown - yUp;
+    const xUp = event.touches[0].clientX;
+    const yUp = event.touches[0].clientY;
+    const xDiff = this.xDown - xUp;
+    const yDiff = this.yDown - yUp;
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 ) {
@@ -174,6 +177,7 @@ export class PageWebsites extends LitElement {
             this.showSlide(this.pageIndex - 1);
         }
     } else {
+        // eslint-disable-next-line no-lonely-if
         if ( yDiff > 0 ) {
             /* up swipe */
         } else {

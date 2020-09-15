@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { stylesBase, stylesAnimations } from '../../me-app/src/styles';
+import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
 
 export class PageEducation extends LitElement {
   static get styles() {
@@ -42,7 +42,9 @@ export class PageEducation extends LitElement {
         try {
           return JSON.parse(text);
         } catch(error) {
-          console.log(error);
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return null;
         }
       });
 

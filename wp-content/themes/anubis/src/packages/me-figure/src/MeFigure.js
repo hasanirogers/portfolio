@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
-import { stylesBase, stylesAnimations } from '../../me-app/src/styles';
+import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
 
 export class MeFigure extends LitElement {
   static get styles() {

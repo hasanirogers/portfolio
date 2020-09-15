@@ -1,1 +1,1 @@
-export { MeApp } from './src/MeApp.js';
+export { PageHome } from './src/PageHome.js';

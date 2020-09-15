@@ -43,8 +43,8 @@ const pluginConfigs = {
   },
 
   browserSync: {
-    files: '**/*.php',
-    proxy: 'http://hasanirogers.local'
+    files: '**/*.php', // we have to tell browserSync to reload when we change php files
+    proxy: 'http://hasanirogers.local' // this address your WordPress site runs on locally
   }
 }
 
@@ -105,7 +105,6 @@ module.exports = {
   output: {
     path: join(__dirname, 'wp-content/themes/anubis/bundles'),
     filename: 'bundle.js',
-    publicPath: 'http://hasanirogers.local:8080/wp-content/themes/anubis/bundles'
   },
 
   module: {

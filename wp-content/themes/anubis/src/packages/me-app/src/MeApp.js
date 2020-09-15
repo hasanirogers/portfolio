@@ -87,16 +87,9 @@ export class MeApp extends LitElement {
   constructor() {
     super();
 
-    // reactive properties
-    this.page = location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
+    // defaults
+    this.page = window.location.pathname === '/' ? 'home' : window.location.pathname.replace('/', '');
     this.menuOpened = false;
-
-    // installMediaQueryWatcher(`(min-width: 768px)`, (matches) => {
-    //   this.smallScreen = !matches;
-    // });
-
-    // standard properties
-    this.hamburger;
   }
 
   render() {
