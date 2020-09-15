@@ -4,7 +4,8 @@ const { resolve, join } = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 
 // directories
@@ -39,6 +40,11 @@ const pluginConfigs = {
 
   miniCSSExtract: {
     filename: "bundle.css" // this is what actually get served after sass is compiled
+  },
+
+  browserSync: {
+    files: '**/*.php',
+    proxy: 'http://hasanirogers.local'
   }
 }
 
@@ -88,6 +94,8 @@ const loaderConfigs = {
 // -----------
 
 module.exports = {
+  context: __dirname,
+
   entry: [
     'regenerator-runtime/runtime', // is needed for async/await
     themeDirectory + '/src/packages/me-app/me-app.js', // this file bootstraps our LitElement PWA
@@ -96,7 +104,8 @@ module.exports = {
 
   output: {
     path: join(__dirname, 'wp-content/themes/anubis/bundles'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'http://hasanirogers.local:8080/wp-content/themes/anubis/bundles'
   },
 
   module: {
@@ -121,6 +130,7 @@ module.exports = {
     new CopyWebpackPlugin(pluginConfigs.copyFiles),
     new StyleLintPlugin(pluginConfigs.styleLint),
     new MiniCssExtractPlugin(pluginConfigs.miniCSSExtract),
-    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}) // we only want to produce 1 bundle.js file
+    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}), // we only want to produce 1 bundle.js file
+    new BrowserSyncPlugin(pluginConfigs.browserSync, { reload: false })
   ]
 };

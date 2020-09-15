@@ -4,8 +4,8 @@
   "description": "Bringing WordPress to the future.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=development",
-    "build:watch": "webpack --watch --mode=development",
+    "start": "webpack --watch --mode=development",
+    "build": "webpack --mode=production",
     "deploy": "node deploy.js"
   },
   "author": "Hasani Rogers <hasani.rogers@gmail.com>",
@@ -26,6 +26,8 @@
     "@babel/preset-env": "7.7.6",
     "babel-loader": "8.0.6",
     "babel-preset-env": "1.7.0",
+    "browser-sync": "^2.26.12",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "copy-webpack-plugin": "4.6.0",
     "css-loader": "1.0.1",
     "debug": "2.2.0",

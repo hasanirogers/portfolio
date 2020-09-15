@@ -42,6 +42,7 @@ function add_meta_tags() {
   echo '<meta name="keywords" content="developer, front end, front end developer, web components, lit element">';
   echo '<meta name="description" content="I am Front End Developer who specializes in the presentation layer of the web. I\'m also a proponent of web components." />';
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+  echo '<base href="/">';
 }
 add_action('wp_head', 'add_meta_tags', '1');
 

@@ -110,8 +110,8 @@ export class MeApp extends LitElement {
           <li><a @click=${() => this.handleLink('skills')}>Skills</a></li>
           <li><a @click=${() => this.handleLink('websites')}>Websites</a></li>
           <li><a @click=${() => this.handleLink('accomplishments')}>Accomplishments</a></li>
-          <li><a href="http://contact.hasanirogers.me">Contact Me</a></li>
           <li><a href="http://blog.hasanirogers.me">My Blog</a></li>
+          <li><a href="http://contact.hasanirogers.me">Contact Me</a></li>
         </ul>
       </nav>
 

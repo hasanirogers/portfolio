@@ -17,6 +17,8 @@
 
 wp_head(); ?>
 
-<me-app></me-app>
+<body>
+  <me-app></me-app>
+</body>
 
 <?php wp_footer();
