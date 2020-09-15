@@ -2,7 +2,7 @@
 
 const path = require('path');
 const SftpClient = require('ssh2-sftp-client');
-const remoteDir = '/var/www/hasanirogers.me/public_html';
+const remoteDir = '/var/www/hasanirogers.me/public_html/wp-content/themes';
 
 require('dotenv').config();
 
