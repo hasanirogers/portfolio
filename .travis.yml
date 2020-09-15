@@ -4,7 +4,6 @@ node_js:
 before_script:
   - npm install
   - npm run build
-  - rm -fr node_modules
 script:
   - npm run deploy
 branches:
