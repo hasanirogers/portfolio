@@ -71,12 +71,13 @@ function add_fonts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_fonts' );
 
-// enque styles and scripts
+// enqueue styles and scripts
 wp_enqueue_style('admin-css', get_theme_file_uri('/admin.css'));
 
 if (!is_admin()) {
     wp_enqueue_script('webcomponent-loader', get_theme_file_uri('/vendor/webcomponents-loader.js'), [], false, true);
     wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/bundle.js'), [], false, true);
+    wp_enqueue_style('bundle-css', get_theme_file_uri('/bundles/bundle.css'));
 }
 
 // not having this causes a redirect loop on prod for some reason

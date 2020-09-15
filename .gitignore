@@ -4,3 +4,4 @@ vendor/
 wp-content/uploads/
 wp-config.php
 package-lock.json
+.env
