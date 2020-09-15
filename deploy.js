@@ -2,7 +2,6 @@
 
 const path = require('path');
 const SftpClient = require('ssh2-sftp-client');
-const { exec } = require("child_process");
 const remoteDir = '/var/www/hasanirogers.me/public_html';
 
 require('dotenv').config();
@@ -16,6 +15,7 @@ const config = {
 
 const main = async () => {
   const client = new SftpClient();
+  const src = path.join(__dirname, 'wp-content/themes');
 
   try {
     await client.connect(config);
@@ -24,9 +24,9 @@ const main = async () => {
       console.log(`Listener: Uploaded ${info.source}`);
     });
 
-    await client.uploadDir(__dirname, remoteDir);
-    await client.rmdir(path.join(remoteDir, 'node_modules'), true);
+    let result = await client.uploadDir(src, remoteDir);
 
+    return result;
   } finally {
     client.end();
   }
