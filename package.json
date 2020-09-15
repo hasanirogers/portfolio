@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
-    "build:watch": "webpack --watch --mode=development"
+    "build:watch": "webpack --watch --mode=development",
+    "deploy": "node deploy.js"
   },
   "author": "Hasani Rogers <hasani.rogers@gmail.com>",
   "license": "ISC",
