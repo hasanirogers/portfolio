@@ -1,7 +1,7 @@
 {
   "name": "hasanirogers",
   "version": "1.1.0",
-  "description": "Bringing wordpress to the future.",
+  "description": "Bringing WordPress to the future.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
@@ -24,9 +24,9 @@
     "@babel/plugin-syntax-dynamic-import": "7.7.4",
     "@babel/plugin-syntax-object-rest-spread": "7.7.4",
     "@babel/preset-env": "7.7.6",
+    "autoprefixer": "9.3.1",
     "babel-loader": "8.0.6",
     "babel-preset-env": "1.7.0",
-    "regenerator-runtime": "^0.13.3",
     "copy-webpack-plugin": "4.6.0",
     "css-loader": "1.0.1",
     "debug": "2.2.0",
@@ -34,12 +34,12 @@
     "mini-css-extract-plugin": "0.4.4",
     "node-sass": "4.14.1",
     "postcss-loader": "3.0.0",
+    "regenerator-runtime": "^0.13.3",
     "sass-loader": "7.1.0",
     "stylelint": "9.8.0",
     "stylelint-webpack-plugin": "0.10.5",
     "webpack": "4.41.2",
-    "webpack-cli": "3.1.2",
-    "webpack-merge": "4.1.4",
-    "autoprefixer": "9.3.1"
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "4.1.4"
   }
 }

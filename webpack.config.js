@@ -4,23 +4,23 @@ const { resolve, join } = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const StyleLintPlugin = require('stylelint-webpack-plugin');
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const ENV = process.argv.find(arg => arg.includes('production')) ? 'production' : 'development';
+// const ENV = process.argv.find(arg => arg.includes('production')) ? 'production' : 'development';
 
-const themedir = resolve('wp-content/themes/anubis');
-const webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
+const themeDirectory = resolve('wp-content/themes/anubis');
+const webComponentsJS = './node_modules/@webcomponents/webcomponentsjs';
 
-const copyfiles = [
+const copyFiles = [
   {
-    from: resolve(`${webcomponentsjs}/webcomponents-*.{js,map}`),
-    to: join(themedir, 'vendor'),
+    from: resolve(`${webComponentsJS}/webcomponents-*.{js,map}`),
+    to: join(themeDirectory, 'vendor'),
     flatten: true
   },
   {
-    from: resolve(`${webcomponentsjs}/custom-elements-es5-adapter.js`),
-    to: join(themedir, 'vendor'),
+    from: resolve(`${webComponentsJS}/custom-elements-es5-adapter.js`),
+    to: join(themeDirectory, 'vendor'),
     flatten: true
   }
 ];
@@ -46,33 +46,37 @@ const babel = [{
   }
 }];
 
-// const stylelint = {
-//   context: './src',
-//   failOnError: true
-// }
+const styleLintConfig = {
+  context: './src',
+  failOnError: true
+}
 
-// const minicssextract = [
-//   MiniCssExtractPlugin.loader,
-//   {
-//     loader: "css-loader",
-//     options: {sourceMap: true}
-//   },
-//   {
-//     loader: "postcss-loader",
-//     options: {sourceMap: true}
-//   },
-//   {
-//     loader: "sass-loader",
-//     options: {sourceMap: true}
-//   }
-// ];
+const miniCSSExtractConfig = {
+  filename: "bundle.css"
+}
+
+const miniCSSExtractLoaders = [
+  MiniCssExtractPlugin.loader,
+  {
+    loader: "css-loader",
+    options: {sourceMap: true}
+  },
+  {
+    loader: "postcss-loader",
+    options: {sourceMap: true}
+  },
+  {
+    loader: "sass-loader",
+    options: {sourceMap: true}
+  }
+];
 
 const commonConfig = merge([
   {
     entry: [
       'regenerator-runtime/runtime',
-      themedir + '/src/packages/me-app/me-app.js',
-      // themedir + '/src/styles/app.scss'
+      themeDirectory + '/src/packages/me-app/me-app.js',
+      themeDirectory + '/src/styles/app.scss'
     ],
 
     output: {
@@ -89,12 +93,11 @@ const commonConfig = merge([
           use: babel
         },
 
-        // {
-        //   test: /\.scss$/,
-        //   exclude: /node_modules/,
-        //   use: minicssextract
-
-        // }
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: miniCSSExtractLoaders
+        }
       ]
     }
   }
@@ -104,9 +107,9 @@ const developmentConfig = merge([
   {
     devtool: 'cheap-module-source-map',
     plugins: [
-      new CopyWebpackPlugin(copyfiles),
-      // new StyleLintPlugin(stylelint),
-      // new MiniCssExtractPlugin({filename: "bundle.css"}),
+      new CopyWebpackPlugin(copyFiles),
+      new StyleLintPlugin(styleLintConfig),
+      new MiniCssExtractPlugin(miniCSSExtractConfig),
       new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1})
     ]
   }
