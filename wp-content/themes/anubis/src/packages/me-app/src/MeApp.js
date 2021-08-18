@@ -1,10 +1,12 @@
 import { LitElement, html, css } from 'lit-element';
 import { Router } from '@vaadin/router';
-// import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { stylesBase, stylesAnimations} from './styles.js';
 import { stylesMenu } from './stylesMenu.js';
 import { stylesSocialMedia } from './stylesSocialMedia.js';
 import { templateAside } from './templates.js';
+
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 import '../../me-hamburger/me-hamburger.js';
 import '../../page-home/page-home.js';
@@ -97,14 +99,14 @@ export class MeApp extends LitElement {
       <nav class="menu ${this.menuOpened ? 'menu--opened' : ''}">
         <me-hamburger @click=${this.handleHamburger} class="menu__icon"></me-hamburger>
         <ul class="menu__items">
-          <li><a @click=${() => this.handleLink('home')}>Home</a></li>
-          <li><a @click=${() => this.handleLink('education')}>Education</a></li>
-          <li><a @click=${() => this.handleLink('history')}>Work History</a></li>
-          <li><a @click=${() => this.handleLink('skills')}>Skills</a></li>
-          <li><a @click=${() => this.handleLink('websites')}>Websites</a></li>
-          <li><a @click=${() => this.handleLink('accomplishments')}>Accomplishments</a></li>
-          <li><a href="http://blog.hasanirogers.me">My Blog</a></li>
-          <li><a href="http://contact.hasanirogers.me">Contact Me</a></li>
+          <li><button @click=${() => this.handleLink('home')}>Home</button></li>
+          <li><button @click=${() => this.handleLink('education')}>Education</button></li>
+          <li><button @click=${() => this.handleLink('history')}>Work History</button></li>
+          <li><button @click=${() => this.handleLink('skills')}>Skills</button></li>
+          <li><button @click=${() => this.handleLink('websites')}>Websites</button></li>
+          <li><button @click=${() => this.handleLink('accomplishments')}>Accomplishments</button></li>
+          <li><button href="http://blog.hasanirogers.me">My Blog</button></li>
+          <li><button href="http://contact.hasanirogers.me">Contact Me</button></li>
         </ul>
       </nav>
 

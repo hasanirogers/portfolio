@@ -18,12 +18,14 @@ export const stylesMenu = css`
       display: none;
   }
 
-  .menu a {
+  .menu button {
     cursor: pointer;
     color: var(--color-primary);
     line-height: 2;
     font-size: 1.5rem;
     text-decoration: none;
+    border: 0;
+    background: transparent;
   }
 
   .menu--opened {

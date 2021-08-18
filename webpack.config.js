@@ -1,5 +1,3 @@
-'use strict';
-
 const { resolve, join } = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -19,18 +17,18 @@ const wcJSDirectory = './node_modules/@webcomponents/webcomponentsjs';
 // ---------------------
 
 const pluginConfigs = {
-  copyFiles: [
-    {
-      from: resolve(`${wcJSDirectory}/webcomponents-*.{js,map}`), // we need this for browsers that don't support web components
-      to: join(themeDirectory, 'vendor'),
-      flatten: true
-    },
-    {
-      from: resolve(`${wcJSDirectory}/custom-elements-es5-adapter.js`), // we need this since we're transpiling to es5
-      to: join(themeDirectory, 'vendor'),
-      flatten: true
-    }
-  ],
+  copyFiles: {
+    patterns: [
+      {
+        from: resolve(`${wcJSDirectory}/webcomponents-*.{js,map}`), // we need this for browsers that don't support web components
+        to: join(themeDirectory, 'vendor')
+      },
+      {
+        from: resolve(`${wcJSDirectory}/custom-elements-es5-adapter.js`), // we need this since we're transpiling to es5
+        to: join(themeDirectory, 'vendor')
+      }
+    ]
+  },
 
   styleLint: {
     context: './src',
@@ -52,17 +50,6 @@ const loaderConfigs = {
   babel: [{
     loader: 'babel-loader',
     options: {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            modules: 'false',
-            targets: {
-              browsers: '> 1%, IE 11, not dead'
-            }
-          }
-        ]
-      ],
       plugins: [
         '@babel/syntax-dynamic-import', // this is needed to support dynamic imports
         '@babel/syntax-object-rest-spread' // this is needed to support the spread  operator
@@ -97,9 +84,9 @@ module.exports = {
   context: __dirname,
 
   entry: [
-    'regenerator-runtime/runtime', // is needed for async/await
-    themeDirectory + '/src/packages/me-app/me-app.js', // this file bootstraps our LitElement PWA
-    themeDirectory + '/src/styles/app.scss' // use this file for any global styles
+    // 'regenerator-runtime/runtime', // is needed for async/await
+    `${themeDirectory}/src/packages/me-app/me-app.js`, // this file bootstraps our LitElement PWA
+    `${themeDirectory}/src/styles/app.scss` // use this file for any global styles
   ],
 
   output: {
