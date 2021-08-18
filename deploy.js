@@ -5,7 +5,7 @@ const SftpClient = require('ssh2-sftp-client');
 
 const localDir = '/';
 const remoteDir = '/var/www/hasanirogers.me/public_html';
-const filterDirs = /^(?!.*(.git|.github|wp-content\/uploads|node_modules))/gm;
+const filterDirs = /^(?!.*(.git|.github|uploads|node_modules))/gm;
 
 require('dotenv').config();
 
@@ -22,7 +22,6 @@ const main = async () => {
 
   try {
     await client.connect(config);
-    await client.rmdir(remoteDir, true);
 
     client.on('upload', (info) => {
       console.log(`Listener: Uploaded ${info.source}`);
