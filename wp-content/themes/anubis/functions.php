@@ -49,20 +49,6 @@ add_action('wp_head', 'add_meta_tags', '1');
 // disable meta tag
 remove_action('wp_head', 'wp_generator');
 
-// es5 adapter
-function add_es5_adapter() {
-  if (!is_admin()) {
-    echo '<script>
-      if (!window.customElements) {
-        document.write(\'<!--\');
-      }
-    </script>
-    <script src="'. get_theme_file_uri('vendor/custom-elements-es5-adapter.js') .'"></script>
-    <!-- DO NOT REMOVE THIS COMMENT -->';
-  }
-}
-add_action('wp_head', 'add_es5_adapter', '1');
-
 // feature image support
 add_theme_support( 'post-thumbnails', array( 'websites') );
 
@@ -72,13 +58,16 @@ function add_fonts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_fonts' );
 
-// enqueue styles and scripts
-wp_enqueue_style('admin-css', get_theme_file_uri('/admin.css'));
-
+// enqueue font end bundles
 if (!is_admin()) {
-    wp_enqueue_script('webcomponent-loader', get_theme_file_uri('/vendor/webcomponents-loader.js'), [], false, true);
-    wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/bundle.js'), [], false, true);
-    wp_enqueue_style('bundle-css', get_theme_file_uri('/bundles/bundle.css'));
+  wp_enqueue_style('bundle-css', get_theme_file_uri('/bundles/frontend.css'));
+  wp_enqueue_script('bundle-js', get_theme_file_uri('/bundles/frontend.js'), array(), false, true);
+}
+
+// enqueue admin bundles
+if (is_admin()) {
+  wp_enqueue_style('admin-css', get_theme_file_uri('/bundles/admin.css'));
+  wp_enqueue_script('admin-js', get_theme_file_uri('/bundles/admin.js'), array('wp-blocks', 'wp-editor', 'wp-components'), false, true);
 }
 
 // not having this causes a redirect loop on prod for some reason

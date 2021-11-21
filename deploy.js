@@ -3,8 +3,8 @@
 const path = require('path');
 const SftpClient = require('ssh2-sftp-client');
 
-const localDir = '/';
-const remoteDir = '/var/www/hasanirogers.me/public_html';
+const localDir = '/wp-content/themes';
+const remoteDir = '/var/www/hasanirogers.me/public_html/wp-content/themes';
 const filterDirs = /^(?!.*(.git|.github|uploads|node_modules))/gm;
 
 require('dotenv').config();
