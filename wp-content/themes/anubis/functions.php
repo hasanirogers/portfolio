@@ -39,8 +39,7 @@ add_action( 'init', 'disable_emojis' );
 // meta tags
 function add_meta_tags() {
   echo '<meta name="author" content="Hasani Rogers">';
-  echo '<meta name="keywords" content="developer, front end, front end developer, web components, lit element">';
-  echo '<meta name="description" content="I am Front End Developer who specializes in the presentation layer of the web. I\'m also a proponent of web components." />';
+  echo '<meta name="description" content="My name is Hasani Rogers and I\'m a web developer who operates out of the Metro Detroit area in Michigan." />';
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
   echo '<base href="/">';
 }
@@ -72,3 +71,14 @@ if (is_admin()) {
 
 // not having this causes a redirect loop on prod for some reason
 remove_filter('template_redirect', 'redirect_canonical');
+
+// menus
+function me_register_menus() {
+  register_nav_menus(
+    array(
+      'hamburger-menu' => __( 'Hamburger Menu'),
+      'footer-menu' => __( 'Footer Menu' ),
+     )
+   );
+ }
+ add_action( 'init', 'me_register_menus' );

@@ -19,6 +19,19 @@ wp_head(); ?>
 
 <body>
   <me-app></me-app>
+  <me-footer>
+    <?php
+      $footer_menu_args = array(
+        'container_class'   => 'footer-menu',
+        'container'         => 'nav',
+        'items_wrap'           => '%3$s',
+        'theme_location'       => 'footer-menu',
+      );
+
+      wp_nav_menu($footer_menu_args);
+      get_template_part('inc/template-parts/social');
+    ?>
+  </me-footer>
 </body>
 
 <?php wp_footer();

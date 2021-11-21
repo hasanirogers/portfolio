@@ -1,0 +1,42 @@
+@use 'include-media/dist/_include-media.scss' as *;
+
+.footer-menu {
+  display: none;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+  font-size: 1.25rem;
+
+  @include media('>tablet') {
+    display: flex;
+  }
+}
+
+.social-menu {
+  ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 1rem;
+
+    @include media('>tablet') {
+      gap: 2rem;
+      justify-content: center;
+    }
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  path {
+    fill: var(--color-background);
+    transition: all 0.3s ease;
+  }
+
+  :hover path {
+    fill: var(--color-secondary);
+  }
+}

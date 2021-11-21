@@ -38,7 +38,7 @@ export class MeApp extends LitElement {
 
         main > * {
           margin: auto;
-          padding-top: 10rem;
+          margin-top: 18vh;
         }
 
         aside {
@@ -56,7 +56,7 @@ export class MeApp extends LitElement {
 
         :host(:not([page="home"])) aside {
           top: 1rem;
-          right: calc(100% - 236px - 1rem);
+          right: calc(100% - 200px - 1rem);
           transform: translateY(0)
         }
 

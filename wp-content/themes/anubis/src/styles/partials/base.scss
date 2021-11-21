@@ -1,4 +1,4 @@
-html {
+:root {
   --color-white: #f8f8f8;
   --color-black: #000;
   --color-primary: #e5c116;
@@ -14,4 +14,20 @@ body {
   margin: 0;
   overflow: hidden;
   background: var(--color-background);
+}
+
+a {
+  color: var(--color-background);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+me-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
