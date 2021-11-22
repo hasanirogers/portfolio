@@ -38,9 +38,21 @@ add_action( 'init', 'disable_emojis' );
 
 // meta tags
 function add_meta_tags() {
+  echo '<title>Hasani Rogers | Web Developer</title>';
   echo '<meta name="author" content="Hasani Rogers">';
+  echo '<meta name="title" content="Hasani Rogers | Web Developer">';
   echo '<meta name="description" content="My name is Hasani Rogers and I\'m a web developer who operates out of the Metro Detroit area in Michigan." />';
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+  echo '<meta property="og:type" content="website">';
+  echo '<meta property="og:url" content="https://hasanirogers.me">';
+  echo '<meta property="og:title" content="Hasani Rogers | Web Developer">';
+  echo '<meta property="og:description" content="My name is Hasani Rogers and I\'m a web developer who operates out of the Metro Detroit area in Michigan.">';
+  echo '<meta property="og:image" content="https://contact.hasanirogers.me/images/avatar.jpeg">';
+  echo '<meta property="twitter:card" content="summary_large_image">';
+  echo '<meta property="twitter:url" content="https://hasanirogers.me">';
+  echo '<meta property="twitter:title" content="Hasani Rogers | Web Developer">';
+  echo '<meta property="twitter:description" content="My name is Hasani Rogers and I\'m a web developer who operates out of the Metro Detroit area in Michigan.">';
+  echo '<meta property="twitter:image" content="https://contact.hasanirogers.me/images/avatar.jpeg">';
   echo '<base href="/">';
 }
 add_action('wp_head', 'add_meta_tags', '1');

@@ -19,6 +19,54 @@ wp_head(); ?>
 
 <body>
   <me-app></me-app>
+  <noscript>
+    <?php
+      $home = get_posts([
+        'name'      => 'home',
+        'post_type' => 'page'
+      ]);
+
+      $education = get_posts([
+        'name'      => 'education',
+        'post_type' => 'page'
+      ]);
+
+      $history = get_posts([
+        'post_type' => 'work_history'
+      ]);
+
+      $websites = get_posts([
+        'post_type' => 'websites'
+      ]);
+
+      $accomplishments = get_posts([
+        'name'      => 'accomplishments',
+        'post_type' => 'page'
+      ]);
+    ?>
+    <article>
+      <h1>Hasani Rogers</h1>
+      <h2>Web Developer</h2>
+      <?php echo $home[0]->post_content; ?>
+      <h3>Education</h3>
+      <?php echo $education[0]->post_content; ?>
+      <h3>Work History</h3>
+      <?php
+        foreach ($history as $job) {
+          echo $job->post_content;
+        }
+      ?>
+      <h3>Websites</h3>
+      <?php
+        foreach ($websites as $website) {
+          echo '<h4>'. $website->post_title .'</h4>';
+          echo $website->post_content;
+        }
+      ?>
+      <h3>Accomplishments</h3>
+      <?php echo $accomplishments[0]->post_content; ?>
+    </article>
+  </noscript>
   <me-footer>
     <?php
       $footer_menu_args = array(
