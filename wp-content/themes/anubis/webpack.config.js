@@ -84,7 +84,10 @@ const frontend = {
         test: /\.js$/,
         use: loaderConfigs.babel
       },
-
+      {
+        test: /\.css$/,
+        use: ['css-loader']
+      },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
