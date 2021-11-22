@@ -1,3 +1,5 @@
+@use 'include-media/dist/_include-media.scss' as *;
+
 :root {
   --color-white: #f8f8f8;
   --color-black: #000;
@@ -30,4 +32,10 @@ me-footer {
   width: 100%;
   position: fixed;
   bottom: 0;
+}
+
+[page='skills'] ~ me-footer {
+  @include media('<tablet') {
+    transform: translateY(100%);
+  }
 }

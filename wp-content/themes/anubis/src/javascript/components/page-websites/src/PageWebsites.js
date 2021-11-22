@@ -1,17 +1,57 @@
 import { html, css, LitElement } from 'lit';
 import { stylesBase, stylesAnimations } from '../../me-app/src/styles.js';
-import { stylesPaginator } from './stylesPaginator.js';
+import Glide from '@glidejs/glide';
 import '../../me-figure/me-figure.js';
 
 export class PageWebsites extends LitElement {
   static get styles() {
     return [
       stylesBase,
-      stylesAnimations,
-      stylesPaginator,
+      // stylesAnimations,
+      // stylesPaginator,
       css`
-        section {
-          text-align: center;
+        :host {
+          --arrow-offset: -2.5rem;
+        }
+
+        button {
+          cursor: pointer;
+          border: 0;
+          position: absolute;
+          top: 50%;
+          opacity: 0.5;
+          background: none;
+          transform: translateY(-50%) scale(0.75);
+          transition: opacity 0.3s ease;
+        }
+
+        button:hover {
+          opacity: 1;
+        }
+
+        .glide {
+          width: 80vw;
+          height: auto;
+          max-height: 50vh;
+          margin: auto;
+        }
+
+        .back {
+          left: var(--arrow-offset);
+        }
+
+        .forward {
+          right: var(--arrow-offset);
+        }
+
+        @media (min-width: 768px) {
+          :host {
+            --arrow-offset: -6rem;
+          }
+
+          button {
+            transform: translateY(-50%) scale(1);
+          }
         }
       `
     ]
@@ -20,30 +60,35 @@ export class PageWebsites extends LitElement {
   static get properties() {
     return {
       websiteData: { type: Object },
-      pageIndex: { type: Number },
-      xDown: { type: Number },
-      yDown: { type: Number },
     }
   }
 
   constructor() {
     super();
     this.websiteData = {};
-    this.pageIndex = 1;
-    this.xDown = null;
-    this.yDown = null;
+    this.domain = window.location.origin;
   }
 
   render() {
     return html`
+      <link rel="stylesheet" href="${this.domain}/wp-content/themes/anubis/bundles/frontend.css" />
       <h3>Websites</h3>
       <section class="page">
-        <section class="pagenator">
-          <div class="pagenator__container">
-            ${this.listWebsites()}
+        <div class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              ${this.listWebsites()}
+            </ul>
           </div>
-          <div class="pagenator__paginator"></div>
-        </section>
+          <div data-glide-el="controls">
+            <button class="back" data-glide-dir="<">
+              <svg xmlns="http://www.w3.org/2000/svg" class="prev" width="56.898" height="91" viewBox="0 0 56.898 91"><path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(0 91) rotate(-90)" fill="#fff"></path></svg>
+            </button>
+            <button class="forward" data-glide-dir=">">
+              <svg xmlns="http://www.w3.org/2000/svg" width="56.898" height="91" viewBox="0 0 56.898 91"><path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(56.898) rotate(90)" fill="#fff"></path></svg>
+            </button>
+          </div>
+        </div>
       </section>
     `
   }
@@ -53,7 +98,24 @@ export class PageWebsites extends LitElement {
   }
 
   updated() {
-    this.initPagenator();
+    if (this.websiteData.length > 0) this.initGlide();
+  }
+
+  initGlide() {
+    const glideElement = this.shadowRoot.querySelector('.glide');
+    const glideOptions = {
+      type: 'carousel',
+      startAt: 0,
+      perView: 1,
+      gap: 100,
+      breakpoints: {
+        768: {
+          perView: 1
+        }
+      }
+    };
+
+    this.glide = new Glide(glideElement, glideOptions).mount();
   }
 
   listWebsites() {
@@ -65,14 +127,14 @@ export class PageWebsites extends LitElement {
         hero = website._embedded['wp:featuredmedia'][0].source_url;
 
         return html `
-          <div class="pagenator__page">
+          <li class="glide__slide">
             <me-figure
               title=${website.title.rendered}
               desc="${website.content.rendered}"
               bgimage="${hero}"
               sitelink="${website.acf.site_link}">
             </me-figure>
-          </div>
+          </li>
         `;
       });
     }
@@ -95,97 +157,4 @@ export class PageWebsites extends LitElement {
 
     this.websiteData = websites;
   }
-
-  initPagenator() {
-    const pages = this.shadowRoot.querySelectorAll('.pagenator__page');
-    const pagenator = this.shadowRoot.querySelector('.pagenator');
-
-    pagenator.addEventListener('touchstart', (event) => {this.handleTouchStart(event)}, false);
-    pagenator.addEventListener('touchmove', (event) => {this.handleTouchMove(event)}, false);
-
-    this.createPagination();
-    if (pages.length > 0) this.showSlide(this.pageIndex);
-  }
-
-  createPagination() {
-    let markup = "";
-    const slides = this.shadowRoot.querySelectorAll('.pagenator__page');
-    const paginator = this.shadowRoot.querySelector('.pagenator__paginator');
-
-    slides.forEach((slide, index) => {
-      const page = index + 1;
-      markup += `<a class="pagenator__navitem"><span>${page}</span></a>`;
-    });
-
-    paginator.innerHTML = markup;
-
-    this.shadowRoot.querySelectorAll('.pagenator__navitem').forEach((navitem, index) => {
-      navitem.addEventListener('click', () => {
-        this.showSlide(index + 1);
-      })
-    });
-
-  }
-
-  showSlide(slideNumber) {
-    const navitems = this.shadowRoot.querySelectorAll('.pagenator__navitem');
-    const slides = this.shadowRoot.querySelectorAll('.pagenator__page');
-
-    this.pageIndex = slideNumber;
-
-    // if the slide number is more than the maximum slides go to 1
-    if (slideNumber > slides.length) this.pageIndex = 1;
-
-    // go to the end if the slide number is less than 1
-    if (slideNumber < 1) this.pageIndex = slides.length;
-
-    // hide all of the slides
-    slides.forEach((slide) => {
-      const theSlide = slide;
-      theSlide.style.display = "none";
-    });
-
-    // remove active from each paginator item
-    navitems.forEach((navitem) => {
-      navitem.classList.remove('pagenator__navitem--active');
-    });
-
-    // make the right slide and navitem active
-    slides[this.pageIndex-1].style.display = 'block';
-    navitems[this.pageIndex-1].classList.add('pagenator__navitem--active');
-  }
-
-  handleTouchStart(event) {
-    this.xDown = event.touches[0].clientX;
-    this.yDown = event.touches[0].clientY;
-  }
-
-  handleTouchMove(event) {
-    if ( !this.xDown || !this.yDown ) {
-        return;
-    }
-
-    const xUp = event.touches[0].clientX;
-    const yUp = event.touches[0].clientY;
-    const xDiff = this.xDown - xUp;
-    const yDiff = this.yDown - yUp;
-
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
-        if ( xDiff > 0 ) {
-           this.showSlide(this.pageIndex + 1);
-        } else {
-            this.showSlide(this.pageIndex - 1);
-        }
-    } else {
-        // eslint-disable-next-line no-lonely-if
-        if ( yDiff > 0 ) {
-            /* up swipe */
-        } else {
-            /* down swipe */
-        }
-    }
-    /* reset values */
-    this.xDown = null;
-    this.yDown = null;
-  };
 }
