@@ -18,20 +18,20 @@ body {
   background: var(--color-background);
 }
 
-a {
-  color: var(--color-background);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--color-secondary);
-}
-
 me-footer {
   width: 100%;
   position: fixed;
   bottom: 0;
+
+  a {
+    color: var(--color-background);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--color-secondary);
+  }
 }
 
 [page='skills'] ~ me-footer {
