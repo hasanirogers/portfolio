@@ -69,6 +69,19 @@ export const stylesBase = css`
     cursor: pointer;
     text-decoration: none;
   }
+
+  .button {
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: auto;
+    color: white;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 1;
+    border-radius: 1rem / 2rem;
+    background-color: var(--color-primary);
+  }
 `;
 
 export const stylesAnimations = css`

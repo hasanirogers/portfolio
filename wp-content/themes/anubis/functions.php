@@ -10,6 +10,7 @@
 include_once('inc/taxonomies/skills.php');
 include_once('inc/post-types/websites.php');
 include_once('inc/post-types/work-history.php');
+include_once('inc/post-types/projects.php');
 
 
 // disable wp-embed
@@ -61,7 +62,7 @@ add_action('wp_head', 'add_meta_tags', '1');
 remove_action('wp_head', 'wp_generator');
 
 // feature image support
-add_theme_support( 'post-thumbnails', array( 'websites') );
+add_theme_support( 'post-thumbnails', array( 'projects') );
 
 // enqueue fonts
 function add_fonts() {

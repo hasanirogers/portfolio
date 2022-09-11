@@ -15,8 +15,10 @@ import '../../page-education/page-education.js';
 import '../../page-history/page-history.js';
 import '../../page-skills/page-skills.js';
 import '../../page-websites/page-websites.js';
+import '../../page-projects/page-projects.js';
+import '../../page-project/page-project.js';
 
-
+export const router = new Router();
 export class MeApp extends LitElement {
 
   static get styles() {
@@ -101,12 +103,11 @@ export class MeApp extends LitElement {
         <ul class="menu__items">
           <li><button @click=${() => this.handleLink('home')}>Home</button></li>
           <li><button @click=${() => this.handleLink('education')}>Education</button></li>
-          <li><button @click=${() => this.handleLink('history')}>Work History</button></li>
-          <li><button @click=${() => this.handleLink('skills')}>Skills</button></li>
-          <li><button @click=${() => this.handleLink('websites')}>Websites</button></li>
+          <li><button @click=${() => this.handleLink('history')}>History</button></li>
+          <li><button @click=${() => this.handleLink('projects')}>Projects</button></li>
           <li><button @click=${() => this.handleLink('accomplishments')}>Accomplishments</button></li>
-          <li><a href="https://blog.hasanirogers.me">My Blog</a></li>
-          <li><a href="https://contact.hasanirogers.me">Contact Me</a></li>
+          <li><a href="https://blog.hasanirogers.me">Blog</a></li>
+          <li><a href="https://contact.hasanirogers.me">Contact</a></li>
         </ul>
       </nav>
 
@@ -118,7 +119,7 @@ export class MeApp extends LitElement {
   }
 
   firstUpdated() {
-    const router = new Router(this.shadowRoot.querySelector('main'));
+    router.setOutlet(this.shadowRoot.querySelector('main'));
     this.hamburger = this.shadowRoot.querySelector('me-hamburger');
 
     router.setRoutes([
@@ -150,6 +151,16 @@ export class MeApp extends LitElement {
         path: '/websites',
         name: 'websites',
         component: 'page-websites'
+      },
+      {
+        path: '/projects',
+        name: 'projects',
+        component: 'page-projects'
+      },
+      {
+        path: '/project/:slug',
+        name: 'project',
+        component: 'page-project'
       },
       {
         path: '(.*)',
