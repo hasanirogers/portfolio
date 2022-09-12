@@ -120,7 +120,7 @@ export const stylesAnimations = css`
 
   @keyframes float {
     100% {
-      transform: translateY(-20px);
+      transform: translateY(-10px);
     }
   }
 `;

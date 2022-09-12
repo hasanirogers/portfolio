@@ -14,7 +14,6 @@ import '../../page-accomplishments/page-accomplishments.js';
 import '../../page-education/page-education.js';
 import '../../page-history/page-history.js';
 import '../../page-skills/page-skills.js';
-import '../../page-websites/page-websites.js';
 import '../../page-projects/page-projects.js';
 import '../../page-project/page-project.js';
 
@@ -85,6 +84,7 @@ export class MeApp extends LitElement {
       page: { type: String, reflect: true, },
       menuOpened: { type: Boolean },
       smallScreen: { type: Boolean },
+      menu: { type: Array },
     };
   }
 
@@ -94,6 +94,7 @@ export class MeApp extends LitElement {
     // defaults
     this.page = window.location.pathname === '/' ? 'home' : window.location.pathname.replace('/', '');
     this.menuOpened = false;
+    this.menu = [];
   }
 
   render() {
@@ -101,13 +102,7 @@ export class MeApp extends LitElement {
       <nav class="menu ${this.menuOpened ? 'menu--opened' : ''}">
         <me-hamburger @click=${this.handleHamburger} class="menu__icon"></me-hamburger>
         <ul class="menu__items">
-          <li><button @click=${() => this.handleLink('home')}>Home</button></li>
-          <li><button @click=${() => this.handleLink('education')}>Education</button></li>
-          <li><button @click=${() => this.handleLink('history')}>History</button></li>
-          <li><button @click=${() => this.handleLink('projects')}>Projects</button></li>
-          <li><button @click=${() => this.handleLink('accomplishments')}>Accomplishments</button></li>
-          <li><a href="https://blog.hasanirogers.me">Blog</a></li>
-          <li><a href="https://contact.hasanirogers.me">Contact</a></li>
+          ${this.makeLinks()}
         </ul>
       </nav>
 
@@ -121,6 +116,7 @@ export class MeApp extends LitElement {
   firstUpdated() {
     router.setOutlet(this.shadowRoot.querySelector('main'));
     this.hamburger = this.shadowRoot.querySelector('me-hamburger');
+    this.fetchMenu();
 
     router.setRoutes([
       {
@@ -149,8 +145,7 @@ export class MeApp extends LitElement {
       },
       {
         path: '/websites',
-        name: 'websites',
-        component: 'page-websites'
+        redirect: '/projects'
       },
       {
         path: '/projects',
@@ -189,5 +184,34 @@ export class MeApp extends LitElement {
     this.hamburger.transformIcon();
     this.menuOpened = false;
     this.switchRoute(page);
+  }
+
+  makeLinks() {
+    const links = this.menu.map((link) => {
+      const firstCharacter = link.url.substring(0, 1);
+      const slug = link.url.replace('/', '');
+
+      return firstCharacter === '/'
+        ? html`<li><button @click=${() => this.handleLink(slug)}>${link.title}</button></li>`
+        : html`<li><a href="${link.url}" target="_blank">${link.title}</a></li>`;
+    });
+
+    return links;
+  }
+
+  async fetchMenu() {
+    const menu = await fetch('/?rest_route=/me/v1/menu/footer-menu')
+      .then(response => response.text())
+      .then(text => {
+        try {
+          return JSON.parse(text);
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return null;
+        }
+      });
+
+    this.menu = menu;
   }
 }

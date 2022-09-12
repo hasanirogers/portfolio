@@ -11,12 +11,13 @@ export class PageProject extends LitElement {
       css`
         img {
           max-width: 100%;
-          border: 1px solid white;
+          border: 4px solid white;
         }
 
         ul {
           display: inline-flex;
           gap: 0.5rem;
+          justify-content: center;
           margin: 0;
           list-style: none;
           flex-wrap: wrap;
@@ -41,19 +42,29 @@ export class PageProject extends LitElement {
           padding: 0 2vw;
           margin-top: -4vw;
           aspect-ratio: 16/9;
+          text-align: center;
         }
 
         .button {
-          position: absolute;
-          right: 1rem;
-          bottom: 3.5rem;
+          margin-top: 1rem;
           border: 4px solid white;
-          animation: float 1s infinite ease-in-out alternate
         }
 
         @media screen and (min-width: 769px) {
           .page {
             margin-top: -4vh;
+          }
+
+          .button {
+            position: absolute;
+            right: calc(50% - 87px);
+            bottom: 2rem;
+            margin-top: 0;
+          }
+
+          .button:hover {
+            color: white;
+            animation: float 1s infinite ease-in-out alternate;
           }
         }
       `

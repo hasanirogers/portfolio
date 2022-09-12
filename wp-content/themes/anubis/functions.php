@@ -7,6 +7,7 @@
 
 
 // includes
+include_once('inc/rest/menu.php');
 include_once('inc/taxonomies/skills.php');
 include_once('inc/post-types/websites.php');
 include_once('inc/post-types/work-history.php');
