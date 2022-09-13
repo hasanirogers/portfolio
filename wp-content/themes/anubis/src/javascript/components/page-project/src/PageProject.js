@@ -1,5 +1,6 @@
 import { html, css, LitElement } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { decodeHTMLEntities } from '../../../utilities/utilities.js';
 import { router } from '../../me-app/src/MeApp.js';
 import { stylesAnimations, stylesBase, } from '../../me-app/src/styles.js';
 
@@ -94,7 +95,7 @@ export class PageProject extends LitElement {
 
   render() {
     return html`
-      <h3>${this.project?.title?.rendered}</h3>
+      <h3>${decodeHTMLEntities(this.project?.title?.rendered)}</h3>
       <section class="page">
         <figure>
           ${this.makeHero()}
