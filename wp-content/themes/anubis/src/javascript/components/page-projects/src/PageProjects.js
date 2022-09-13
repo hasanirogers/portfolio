@@ -9,6 +9,31 @@ export class PageProjects extends LitElement {
       stylesBase,
       stylesAnimations,
       css`
+        kemet-field {
+          position: relative;
+          z-index: 2;
+          grid-column: span 3;
+        }
+
+        kemet-combo {
+          --kemet-combo-background-color: white;
+          color: var(--color-background);
+        }
+
+        kemet-input {
+          width: 100%;
+          position: relative;
+          top: -0.5rem;
+        }
+
+        kemet-input::part(input) {
+          color: white;
+          padding: 0 1rem;
+          background: transparent;
+          border: 0;
+          border-bottom: 1px solid white;
+        }
+
         me-projects {
           display: grid;
           gap: 2vw;
@@ -17,7 +42,7 @@ export class PageProjects extends LitElement {
           margin: auto;
           height: 100%;
           max-width: 96vw;
-          max-height: 50vh;
+          max-height: 65vh;
           overflow: auto;
           position: relative;
           top: -2vh;
@@ -25,6 +50,14 @@ export class PageProjects extends LitElement {
         }
 
         @media screen and (min-width: 769px) {
+          kemet-field {
+            position: absolute;
+            top: -5.5rem;
+            width: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
           me-projects {
             height: auto;
             max-height: 64vh;
@@ -101,6 +134,10 @@ export class PageProjects extends LitElement {
           animation-delay: 1.5s;
         }
 
+        me-projects > :nth-child(16) {
+          animation-delay: 1.6s;
+        }
+
         .page {
           display: block;
           width: 96vw;
@@ -115,16 +152,31 @@ export class PageProjects extends LitElement {
       projects: {
         type: Array,
       },
+      skills: {
+        type: Array,
+      },
     };
   }
 
   constructor() {
     super();
     this.projects = [];
+    this.skills = [];
+
+    this.addEventListener('kemet-combo-selection', (event) => {
+      this.query = event.detail.text;
+      console.log(event.detail);
+      this.highlightProjects();
+    });
   }
 
   firstUpdated() {
     this.fetchProjects();
+    this.fetchSkills();
+  }
+
+  updated() {
+    this.projectElements = this.shadowRoot.querySelectorAll('me-project');
   }
 
   render() {
@@ -132,10 +184,29 @@ export class PageProjects extends LitElement {
       <h3>Projects</h3>
       <section class="page">
         <me-projects>
+          <kemet-field slug="skills">
+            <kemet-input
+              slot="input"
+              name="input"
+              placeholder="Type a skill (eg WordPress) to filter the projects by it."
+              @blur=${(event) => this.handleProjectBlur(event)}>
+            </kemet-input>
+            <kemet-combo slot="component" .options=${this.skills}></kemet-combo>
+          </kemet-field>
           ${this.makeProjects()}
         </me-projects>
       </section>
     `
+  }
+
+  highlightProjects() {
+    this.projectElements.forEach(project => {
+      if (project.mappedSkills.indexOf(this.query) < 0 && this.query !== '') {
+        project.gray = true;
+      } else {
+        project.gray = false;
+      }
+    })
   }
 
   makeProjects() {
@@ -143,7 +214,14 @@ export class PageProjects extends LitElement {
       const halfThumb = project.acf.half !== '' ? project.acf.half : false;
 
       return html`
-        <me-project size="${project.acf.size}" slug="${project.slug}" heading="${project.title.rendered}" thumb="${project.acf.thumb}" half=${ifDefined(halfThumb)}></me-project>
+        <me-project
+          size="${project.acf.size}"
+          slug="${project.slug}"
+          heading="${project.title.rendered}"
+          thumb="${project.acf.thumb}"
+          half=${ifDefined(halfThumb)}
+          .skills=${project.skills}>
+        </me-project>
       `;
     });
 
@@ -164,5 +242,31 @@ export class PageProjects extends LitElement {
       });
 
     this.projects = projects;
+  }
+
+  async fetchSkills() {
+    const skills = await fetch(`/?rest_route=/wp/v2/skills&per_page=99`)
+      .then(response => response.text())
+      .then(text => {
+        try {
+          return JSON.parse(text);
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return null;
+        }
+      });
+
+    this.skills = skills.map((skill) => skill.name);
+  }
+
+  handleProjectBlur(event) {
+    this.query = event.target.value;
+    this.highlightProjects();
+
+    setTimeout(() => {
+      const combo = this.shadowRoot.querySelector('kemet-combo');
+      combo.show = false;
+    }, 500);
   }
 }

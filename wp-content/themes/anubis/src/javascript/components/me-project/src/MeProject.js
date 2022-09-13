@@ -9,6 +9,12 @@ export class MeProject extends LitElement {
       css`
         :host {
           opacity: 0;
+          border: 2px solid white;
+        }
+
+        :host([gray]) {
+          opacity: 0.25 !important;
+          filter: grayscale(1);
         }
 
         img {
@@ -63,11 +69,22 @@ export class MeProject extends LitElement {
       },
       desktop: {
         type: Boolean
-      }
+      },
+      skills: {
+        type: Array,
+      },
+      mappedSkills: {
+        type: Array,
+      },
+      gray: {
+        type: Boolean,
+        reflect: true,
+      },
     }
   }
 
   firstUpdated() {
+    this.fetchSkills();
     this.isDesktop();
     window.addEventListener('resize', () => this.isDesktop());
   }
@@ -91,5 +108,21 @@ export class MeProject extends LitElement {
   isDesktop() {
     const mediaQuery = matchMedia('(min-width: 769px)');
     this.desktop = mediaQuery.matches;
+  }
+
+  async fetchSkills() {
+    const skills = await fetch(`/?rest_route=/wp/v2/skills&include=${this.skills.join(',')}&per_page=99&order=asc`)
+      .then(response => response.text())
+      .then(text => {
+        try {
+          return JSON.parse(text);
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return null;
+        }
+      });
+
+    this.mappedSkills = skills.map((skill) => skill.name);
   }
 }
