@@ -1,15 +1,15 @@
 {
   "name": "hasanirogers",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Repo for https://hasanirogers.me",
   "main": "index.js",
   "scripts": {
     "deploy": "node deploy.js"
   },
-  "author": "Hasani Rogers <hasani.rogers@gmail.com>",
+  "author": "Hasani Rogers <dev@hasanirogers.me>",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "ssh2-sftp-client": "^7.0.2"
+    "dotenv": "^16.0.2",
+    "ssh2-sftp-client": "^9.0.4"
   }
 }

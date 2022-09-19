@@ -1,11 +1,6 @@
-
 /* eslint-disable no-console */
 const path = require('path');
 const SftpClient = require('ssh2-sftp-client');
-
-const localDir = '/wp-content/themes';
-const remoteDir = '/var/www/hasanirogers.me/public_html/wp-content/themes';
-const filterDirs = /^(?!.*(.git|.github|uploads|node_modules))/gm;
 
 require('dotenv').config();
 
@@ -16,9 +11,21 @@ const config = {
   port: process.env.FTP_DEPLOY_PORT || 22,
 };
 
-const main = async () => {
+const directories = {
+  themes: {
+    local: '/wp-content/themes',
+    remote: '/var/www/hasanirogers.me/public_html/wp-content/themes'
+  },
+  plugins: {
+    local: '/wp-content/plugins',
+    remote: '/var/www/hasanirogers.me/public_html/wp-content/plugins'
+  },
+  filter: /^(?!.*(.git|.github|node_modules))/gm
+};
+
+const upload = async () => {
   const client = new SftpClient();
-  const src = path.join(__dirname, localDir);
+  const themesSRC = path.join(__dirname, directories.themes.local);
 
   try {
     await client.connect(config);
@@ -27,14 +34,18 @@ const main = async () => {
       console.log(`Listener: Uploaded ${info.source}`);
     });
 
-    const result = await client.uploadDir(src, remoteDir, filterDirs);
+    const options = {
+      filter: (path, isDirectory) => directories.filter.test(path)
+    }
 
-    return result;
+    await client.uploadDir(themesSRC, directories.themes.remote, options);
+
+    return;
   } finally {
     client.end();
   }
 };
 
-main()
+upload()
   .then(message => console.log(message))
   .catch((error) => { console.log(`main error: ${error.message}`); });
