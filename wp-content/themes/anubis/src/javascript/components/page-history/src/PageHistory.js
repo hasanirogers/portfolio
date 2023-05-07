@@ -45,6 +45,10 @@ export class PageHistory extends LitElement {
         strong {
           font-size: 1.25rem;
         }
+
+        .page {
+          padding-bottom: 7rem;
+        }
       `
     ]
   }

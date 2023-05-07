@@ -16,6 +16,10 @@ export class PageAccomplishments extends LitElement {
         li {
           margin-bottom: 2rem;
         }
+
+        .page {
+          padding-bottom: 7rem;
+        }
       `
     ]
   }

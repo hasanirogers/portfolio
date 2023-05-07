@@ -4,7 +4,7 @@ export const stylesMenu = css`
   .menu {
     position: absolute;
     right: 0;
-    z-index: 1;
+    z-index: 9;
     margin: 0;
     padding: 0;
     width: 110px;
