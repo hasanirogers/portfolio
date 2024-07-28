@@ -15,12 +15,12 @@ jobs:
           npm install
           npm run build
       - name: Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          protocol: "ftps"
-          server: ${{ secrets.FTP_DEPLOY_HOST }}
           username: ${{ secrets.FTP_DEPLOY_USERNAME }}
-          password: ${{ secrets.FTP_DEPLOY_PASSWORD }}
+          server: ${{ secrets.FTP_DEPLOY_HOST }}
           port: ${{ secrets.FTP_DEPLOY_PORT }}
-          local-dir: "./dist/"
-          server-dir: "./sites/portfolio/"
+          local_path: "./dist/"
+          remote_path: "./sites/portfolio/"
+          sftp_only: true
+          password: ${{ secrets.FTP_DEPLOY_PASSWORD }}
