@@ -1,0 +1,228 @@
+import { html } from "lit";
+
+export const education = html`
+  <p>A.A.S. Computer Information Science</p>
+  <p>Henry Ford Community College</p>
+  <p>Dearborn, MI</p>
+`;
+
+export const workHistory = [
+  {
+    date: 'April 2020 - Present',
+    description: 'Associate Director Technology, VML',
+  },
+  {
+    date: 'October 2018 – April 2020',
+    description: 'Tech Specialist, Tek Systems',
+  },
+  {
+    date: 'May 2018 – October 2018',
+    description: 'Senior Developer, Nexient',
+  },
+  {
+    date: 'April 2014 - May 2018',
+    description: 'Senior Web Developer, Optum',
+  },
+  {
+    date: 'January 2011 - April 2014',
+    description: 'Senior Web Application Developer, Campbell Ewald',
+  },
+  {
+    date: 'October 2009 - December 2010',
+    description: 'Frontend Web Developer, Bluewater Technologies',
+  },
+  {
+    date: 'September 2007 - March 2009',
+    description: 'Web Designer, Tell Vision Networks',
+  },
+  {
+    date: 'January 2007 - September 2007',
+    description: 'Web Designer, Henry Ford Community College',
+  },
+];
+
+export const skills = [
+  'AEM',
+  'Angular',
+  'Craft CMS',
+  'CSS',
+  'Design System',
+  'ESNext',
+  'Express.js',
+  'Gutenberg',
+  'HTML5',
+  'JavaScript',
+  'LAMP',
+  'Lit',
+  'MongoDB',
+  'Node.js',
+  'PHP',
+  'React',
+  'Redux',
+  'Rest APIs',
+  'Rollup',
+  'SCSS',
+  'Storybook',
+  'TypeScript',
+  'Vite',
+  'Vue',
+  'WCAG',
+  'Web Components',
+  'Webpack',
+  'Woo Commerce',
+  'WordPress',
+];
+
+export const projects = [
+  {
+    size: '2x2',
+    slug: 'gxp',
+    heading: 'Guest XP',
+    thumb: '/assets/gxp-thumb.png',
+    hero: '/assets/gxp.png',
+    skills: ['ESNext', 'HTML5', 'React', 'TypeScript', 'Rest APIs', 'Vite', 'SCSS', 'Axios'],
+    description: 'Guest XP is a scheduling app for Ford and Lincoln that I worked on.',
+    link: 'https://www.avisford.com/fordgxp.aspx',
+  },
+  {
+    size: '2x1',
+    slug: 'apeiron',
+    heading: 'Apeiron',
+    thumb: '/assets/apeiron-thumb.jpg',
+    halfThumb: '/assets/apeiron-half.jpg',
+    hero: '/assets/apeiron.jpg',
+    skills: ['Design System', 'Lit', 'React', 'SCSS', 'Storybook', 'TypeScript', 'WCAG', 'Web Components', 'Webpack'],
+    description: 'Apeiron is the latest T-mobile design system. I worked on this project as it’s lead Web Developer. It’s an internal project so I can’t link to it.',
+  },
+  {
+    size: '1x1',
+    slug: 'pgs',
+    heading: 'Precision Global Systems',
+    thumb: '/assets/pgs-thumb.jpg',
+    hero: '/assets/pgs.png',
+    skills: ['ESNext', 'Gutenberg', 'HTML5', 'JavaScript', 'LAMP', 'Lit', 'PHP', 'SCSS', 'Webpack', 'WordPress'],
+    description: 'I do maintenance and support for Precision Global Systems. I’m also working on a rebuild of their site.',
+  },
+  {
+    size: '1x1',
+    slug: 'indelible',
+    heading: 'Indelible Designs',
+    thumb: '/assets/indelible-thumb.jpg',
+    hero: '/assets/indelible.png',
+    skills: ['ESNext', 'CSS', 'Express.js', 'JavaScript', 'Lit', 'MongoDB', 'Node.js', 'Web Components'],
+    description: 'I put together an app for Indelible Designs that displays a personalized message after a QR code is scanned. App is private so no link.',
+  },
+  {
+    size: '1x1',
+    slug: 'doctor-at-my-door',
+    heading: 'Doctor At My Door',
+    thumb: '/assets/damd-thumb.png',
+    hero: '/assets/damd.png',
+    skills: ['ESNext', 'HTML5', 'JavaScript', 'TypeScript', 'LAMP', 'Lit', 'PHP', 'SCSS', 'WordPress'],
+    description: 'I was involved with the launch and maintenance on the Doctor at My Door website.',
+    link: 'https://doctoratmydoor.com',
+  },
+  {
+    size: '1x1',
+    slug: 'fds',
+    heading: 'Ford Design System',
+    thumb: '/assets/fds-thumb.jpg',
+    hero: '/assets/fds.jpg',
+    skills: ['Design System', 'Angular', 'ESNext', 'JavaScript', 'Lit', 'React', 'SCSS', 'Storybook', 'Vue', 'WCAG', 'Web Components'],
+    description: 'I worked on the Ford Design System for nearly 2 years. I spearheaded using Web Components for a design system to work in multiple libraries.',
+  },
+  {
+    size: '2x1',
+    slug: 'corporate',
+    heading: 'Ford Corporate',
+    thumb: '/assets/corporate-thumb.jpg',
+    halfThumb: '/assets/corporate-half.jpg',
+    hero: '/assets/corporate.png',
+    skills: ['AEM', 'ESNext', 'HTML5', 'JavaScript', 'SCSS'],
+    description: 'I took the work I did on the Ford Design System and implemented them on the Ford Corporate website.',
+    link: 'https://corporate.ford.com',
+  },
+  {
+    size: '1x1',
+    slug: 'prhc',
+    heading: 'Patrick Riley Heating & Cooling',
+    thumb: '/assets/prhc-thumb.jpg',
+    hero: '/assets/prhc.png',
+    skills: ['Craft CMS', 'CSS', 'ESNext', 'HTML5', 'JavaScript'],
+    description: 'I worked with Data Driven Marketers to make updates to the Patrick Riley Services site.',
+    link: 'https://patrickrileyservices.com'
+  },
+  {
+    size: '2x1',
+    slug: 'checkout',
+    heading: 'Ford Checkout',
+    thumb: '/assets/checkout-thumb.jpg',
+    halfThumb: '/assets/checkout-half.jpg',
+    hero: '/assets/checkout.png',
+    skills: ['AEM', 'ESNext', 'HTMl5', 'JavaScript', 'React', 'Redux', 'Rest APIs', 'SCSS', 'Storybook'],
+    description: 'I worked on the Checkout team for the Ford UK site.',
+    link: 'https://www.ford.co.uk'
+  },
+  {
+    size: '1x1',
+    slug: 'fma',
+    heading: 'Ford Member Account',
+    thumb: '/assets/fma-thumb.jpg',
+    hero: '/assets/fma.png',
+    skills: ['ESNext', 'HTML5', 'JavaScript', 'Lit', 'React', 'SCSS'],
+    description: 'FMA is a single sign on solution app that I worked on. I also worked on other related projects here like it’s docs site and sandbox.',
+  },
+  {
+    size: '2x1',
+    slug: 'antbell',
+    heading: 'AntBell! Music',
+    thumb: '/assets/antbell-thumb.jpg',
+    halfThumb: '/assets/antbell-half.jpg',
+    hero: '/assets/antbell.jpg',
+    skills: ['ESNext', 'HTMl5', 'JavaScript', 'LAMP', 'PHP', 'SCSS', 'Webpack', 'WooCommerce', 'WordPress'],
+    description: 'A WooCommerce site I did for a local artist. It has a custom child theme built by me.',
+    link: 'https://antbell.hasanirogers.me'
+  },
+  {
+    size: '2x1',
+    slug: 'kemet',
+    heading: 'Kemet UI',
+    thumb: '/assets/kemet-thumb.jpg',
+    halfThumb: '/assets/kemet-half.jpg',
+    hero: '/assets/kemet.png',
+    skills: ['Design System', 'ESNext', 'HTMl5', 'TypeScript', 'Lit', 'Rollup', 'SCSS', 'Storybook', 'WCAG'],
+    description: 'I maintain my own Design System that uses Web Components for cross framework functionality.',
+    link: 'https://kemet.dev'
+  },
+  {
+    size: '1x1',
+    slug: 'bob',
+    heading: 'Bob Cards',
+    thumb: '/assets/bob-thumb.jpg',
+    hero: '/assets/bob.jpg',
+    skills: ['ESNext', 'Express.js', 'HTML5', 'JavaScript', 'LAMP', 'Lit', 'Node.js', 'PHP', 'SCSS', 'WordPress'],
+    description: 'A passion project I developed. It’s now more a proof of concept. If you’re not in Michigan you’ll need to remove the state filter to see some businesses. Click the caret to do so.',
+    link: 'https://bobcards.app'
+  },
+  {
+    size: '2x1',
+    slug: 'gardens-care',
+    heading: 'Gardens Care',
+    thumb: '/assets/gardens-thumb.png',
+    halfThumb: '/assets/gardens-half.png',
+    hero: '/assets/gardens.png',
+    skills: ['ESNext', 'HTML5', 'TypeScript', 'LAMP', 'Lit', 'PHP', 'SCSS', 'WordPress'],
+    description: 'I worked on various features and enhancements to the Gardens Care web site.',
+    link: 'https://gardenscare.com'
+  },
+  {
+    size: '1x1',
+    slug: 'ippm',
+    heading: 'Interactive Posts (IPPM)',
+    thumb: '/assets/ippm-thumb.jpg',
+    hero: '/assets/ippm.jpg',
+    skills: ['ESNext', 'Gutenberg', 'HTML5', 'JavaScript', 'LAMP', 'Lit', 'PHP', 'React', 'WordPress'],
+    description: 'A custom WordPress plugin I wrote and published. IPPM lets users craft beautiful JavaScript and CSS enhanced posts.',
+    link: 'https://wordpress.org/plugins/interactive-posts-ippm'
+  },
+]

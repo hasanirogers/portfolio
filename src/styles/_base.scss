@@ -1,0 +1,26 @@
+@use 'include-media/dist/_include-media.scss' as *;
+
+:root {
+  --color-white: #f8f8f8;
+  --color-black: #000;
+  --color-primary: #e5c116;
+  --color-secondary: #1d76c4;
+  --color-background: #05161f;
+  --kemet-color-text: var(--color-white);
+
+  overflow: auto;
+}
+
+body {
+  font: 16px 'Ubuntu', sans-serif;
+  color: var(--color-white);
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+me-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}

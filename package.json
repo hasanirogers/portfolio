@@ -1,15 +1,23 @@
 {
-  "name": "hasanirogers",
-  "version": "1.2.0",
-  "description": "Repo for https://hasanirogers.me",
-  "main": "index.js",
+  "name": "portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "deploy": "node deploy.js"
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "start": "vite"
   },
-  "author": "Hasani Rogers <hasani.rogers@gmail.com>",
-  "license": "ISC",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "ssh2-sftp-client": "^7.0.2"
+    "@vaadin/router": "^1.7.5",
+    "include-media": "^2.0.0",
+    "kemet-ui": "^3.0.1",
+    "lit": "^3.1.4",
+    "sass": "^1.77.8"
+  },
+  "devDependencies": {
+    "tslib": "^2.6.3",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.4"
   }
 }
