@@ -23,4 +23,4 @@ jobs:
           password: ${{ secrets.FTP_DEPLOY_PASSWORD }}
           port: ${{ secrets.FTP_DEPLOY_PORT }}
           local-dir: "./dist/"
-          server-dir: "./sites/portfolio"
+          server-dir: "./sites/portfolio/"
