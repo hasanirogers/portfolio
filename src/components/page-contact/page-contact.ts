@@ -26,15 +26,32 @@ export class PageContact extends LitElement {
       section {
         font-size: 1rem;
         text-align: center;
+        max-height: 64vh;
+        overflow: auto;
+      }
+
+      @media screen and (min-width: 768px) {
+        section {
+          max-height: none;
+        }
       }
 
       fieldset {
-        width: 64vw;
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: 1fr 1.5fr;
+        width: 80vw;
         border: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
         text-align: left;
+      }
+
+      @media screen and (min-width: 768px) {
+        fieldset {
+          width: 64vw;
+          display: grid;
+          gap: 2rem;
+          grid-template-columns: 1fr 1.5fr;
+        }
       }
 
       kemet-field:has(kemet-textarea) {
