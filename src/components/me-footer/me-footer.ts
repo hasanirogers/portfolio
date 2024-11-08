@@ -39,7 +39,7 @@ export class MeFooter extends LitElement {
 
       @media (min-width: 768px) {
         footer {
-          padding: 4rem 0 2rem 0;
+          padding: 0.25rem 0;
         }
       }
 
@@ -59,11 +59,13 @@ export class MeFooter extends LitElement {
         font-size: 1.25rem;
       }
 
+      /*
       @media (min-width: 768px) {
         .footer-menu {
           display: flex;
         }
       }
+      */
 
       .social-menu ul {
         display: flex;

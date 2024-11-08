@@ -7,8 +7,8 @@ export const stylesMenu = css`
     z-index: 9;
     margin: 0;
     padding: 0;
-    width: 110px;
-    height: 110px;
+    width: 56px;
+    height: 56px;
     background-color: var(--color-white);
     border-bottom-left-radius: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);
@@ -46,13 +46,25 @@ export const stylesMenu = css`
 
   .menu__icon {
     position: absolute;
-    top: 28px;
-    right: 28px;
+    top: 0.5rem;
+    right: 0.5rem;
   }
 
   .menu__items {
     text-align: right;
     margin: 64px;
     padding: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .menu {
+      width: 110px;
+      height: 110px;
+    }
+
+    .menu__icon {
+      top: 28px;
+      right: 28px;
+    }
   }
 `;
